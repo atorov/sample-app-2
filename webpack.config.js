@@ -1,61 +1,74 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 
-const MODE = process.env.MODE
+
+const NODE_ENV = process.env.NODE_ENV
+const MODE = NODE_ENV !== "development" ? 'production' : NODE_ENV
 
 const config = {
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                // include,
-                // exclude,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: () => ([
-                                require('autoprefixer')
-                            ])
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.less$/,
-                // include,
-                // exclude,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: () => ([
-                                require('autoprefixer')
-                            ])
-                        }
-                    },
-                    'less-loader'
-                ]
-            }
-        ]
-    },
+    mode: MODE,
 
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Sample App 2'
         }),
 
+        // That [name] placeholder uses the name of the entry where the CSS is referred.
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
+
         // Ignore node_modules so CPU usage with poll watching drops significantly.
+        // If you wanted to output the resulting file to a specific directory,
+        // you could do it by passing a path.
+        // Example: filename: 'styles/[name].css'.
         new webpack.WatchIgnorePlugin([
             path.join(__dirname, 'node_modules')
         ])
-    ]
+    ],
+
+    module: {
+        rules: [
+            {
+                test: /\.less$/,
+                // include,
+                // exclude,
+                use: MODE === 'production'
+                    ? [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: () => ([
+                                    require('autoprefixer')
+                                ])
+                            }
+                        },
+                        'less-loader'
+                    ]
+                    : [
+                        'style-loader',
+                        'css-loader',
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: () => ([
+                                    require('autoprefixer')
+                                ])
+                            }
+                        },
+                        'less-loader'
+                    ]
+            }
+        ]
+    }
 };
+
+// Production mode only settings -----------------------------------------------
+// ...
 
 // Development mode only settings ----------------------------------------------
 if (MODE === 'development') {
@@ -96,5 +109,10 @@ if (MODE === 'development') {
         }
     }
 }
+
+console.log('::: ::: :::')
+console.log('::: MODE:', MODE)
+console.log('::: process.env.NODE_ENV (NODE_ENV):', NODE_ENV)
+console.log('::: ::: :::')
 
 module.exports = config
