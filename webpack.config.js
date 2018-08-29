@@ -5,6 +5,46 @@ const webpack = require('webpack')
 const MODE = process.env.MODE
 
 const config = {
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                // include,
+                // exclude,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => ([
+                                require('autoprefixer')
+                            ])
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.less$/,
+                // include,
+                // exclude,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => ([
+                                require('autoprefixer')
+                            ])
+                        }
+                    },
+                    'less-loader'
+                ]
+            }
+        ]
+    },
+
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Sample App 2'
