@@ -1,4 +1,12 @@
 body {
   background: cornsilk;
 }
+.pure-button {
+  border-radius: 1em;
+}
+.my-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 

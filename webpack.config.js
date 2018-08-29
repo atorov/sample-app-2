@@ -1,33 +1,15 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 
-
 const NODE_ENV = process.env.NODE_ENV
-const MODE = NODE_ENV !== "development" ? 'production' : NODE_ENV
+const MODE = NODE_ENV !== 'development' ? 'production' : NODE_ENV
+
+const SRC_DIR = path.join(__dirname, 'src')
 
 const config = {
     mode: MODE,
-
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Sample App 2'
-        }),
-
-        // That [name] placeholder uses the name of the entry where the CSS is referred.
-        new MiniCssExtractPlugin({
-            filename: '[name].css',
-        }),
-
-        // Ignore node_modules so CPU usage with poll watching drops significantly.
-        // If you wanted to output the resulting file to a specific directory,
-        // you could do it by passing a path.
-        // Example: filename: 'styles/[name].css'.
-        new webpack.WatchIgnorePlugin([
-            path.join(__dirname, 'node_modules')
-        ])
-    ],
 
     module: {
         rules: [
@@ -64,8 +46,27 @@ const config = {
                     ]
             }
         ]
-    }
-};
+    },
+
+    plugins: [
+        // Ignore node_modules so CPU usage with poll watching drops significantly.
+        // If you wanted to output the resulting file to a specific directory,
+        // you could do it by passing a path.
+        // Example: filename: 'styles/[name].css'.
+        new webpack.WatchIgnorePlugin([
+            path.join(__dirname, 'node_modules')
+        ]),
+
+        new HtmlWebpackPlugin({
+            title: 'Sample App 2'
+        }),
+
+        // That [name] placeholder uses the name of the entry where the CSS is referred.
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        })
+    ]
+}
 
 // Production mode only settings -----------------------------------------------
 // ...
@@ -81,7 +82,7 @@ if (MODE === 'development') {
 
         // Parse host and port from env to allow customization.
         // If you use Docker, Vagrant or Cloud9, set
-        // host: options.host || '0.0.0.0';
+        // host: options.host || '0.0.0.0'
         // 0.0.0.0 is available to all network devices
         // unlike default `localhost`.
         host: process.env.HOST, // Defaults to `localhost`
