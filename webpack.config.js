@@ -1,53 +1,51 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const merge = require('webpack-merge')
 const path = require('path')
 const webpack = require('webpack')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const parts = require('./webpack.parts')
 
-module.exports = {
-    devServer: {
-        // Assuming you don't generate index.html dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it.
-        // `contentBase` accepts either a path (e.g., 'build') or an array of paths (e.g., ['build', 'images']).
-        // The value defaults to the project root.
-        // contentBase: ...
+const commonConfig = merge([
+    {
+        plugins: [
+            new HtmlWebpackPlugin({
+                title: 'Sample App 2'
+            })
+        ]
+    }
+])
 
-        // Parse host and port from env to allow customization.
-        // If you use Docker, Vagrant or Cloud9, set
-        // host: options.host || '0.0.0.0';
-        // 0.0.0.0 is available to all network devices
-        // unlike default `localhost`.
-        host: process.env.HOST, // Defaults to `localhost`
-        port: process.env.PORT, // Defaults to 8080
+const productionConfig = merge([
+    {
+        plugins: [
+            // Ignore node_modules so CPU usage with poll watching drops significantly.
+            new webpack.WatchIgnorePlugin([
+                path.join(__dirname, 'node_modules')
+            ])
+        ]
+    }
+])
 
-        // Enables HTML5 history API based routing
-        historyApiFallback: true,
+const developmentConfig = merge([
+    parts.devServer({
+        // Customize host/port here if needed
+        host: process.env.HOST,
+        port: process.env.PORT
+    })
+])
 
-        // Open the page in browser
-        // open: true,
+module.exports = (mode) => {
+    if (mode === 'production') {
+        return merge(
+            commonConfig,
+            productionConfig,
+            { mode }
+        )
+    }
 
-        // Display only errors to reduce the amount of output.
-        stats: 'errors-only',
-
-        // An overlay for capturing compilation related warnings and errors in the browser.
-        // `overlay` does not capture runtime errors of the application.
-        overlay: true,
-
-        watchOptions: {
-            // Delay the rebuild after the first change
-            aggregateTimeout: 300,
-
-            // Poll using interval (in ms, accepts boolean too)
-            poll: 1000
-        }
-    },
-
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Sample App 2'
-        }),
-
-        // Ignore node_modules so CPU usage with poll watching drops significantly.
-        new webpack.WatchIgnorePlugin([
-            path.join(__dirname, 'node_modules')
-        ]),
-    ]
+    return merge(
+        commonConfig,
+        developmentConfig,
+        { mode }
+    )
 }
