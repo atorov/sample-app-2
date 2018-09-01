@@ -13,8 +13,8 @@ const config = {
     mode: MODE,
 
     entry: [
-        "@babel/polyfill",
-        SRC
+        '@babel/polyfill',
+        SRC + '/index.jsx'
     ],
 
     module: {
@@ -89,9 +89,9 @@ const config = {
 
             // Take the code and turns it into a format older browsers can understand.
             {
-                test: /\.js$/,
-                // include: SRC,
-                // exclude: NODE_MODULES,
+                test: /\.jsx?$/,
+                include: SRC,
+                exclude: NODE_MODULES,
                 use: {
                     loader: 'babel-loader'
                 }
@@ -109,7 +109,7 @@ const config = {
         ]),
 
         new HtmlWebpackPlugin({
-            title: 'Sample App 2'
+            template: SRC + '/index.ejs'
         }),
 
         // That [name] placeholder uses the name of the entry where the CSS is referred.

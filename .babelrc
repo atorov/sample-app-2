@@ -6,6 +6,12 @@
                 "modules": false,
                 "useBuiltIns": "entry"
             }
+        ],
+        [
+            "@babel/preset-react",
+            {
+                "useBuiltIns": "entry"
+            }
         ]
     ]
 }
