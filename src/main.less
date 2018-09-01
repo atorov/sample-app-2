@@ -1,4 +1,20 @@
+// The way you write your CSS definition matters.
+// To make sure you are getting the benefit from the newer formats,
+// they should become first in the definition.
+// This way the browser picks them up.
+@font-face {
+    font-family: "roboto_normal";
+    src:
+        url("./assets/fonts/roboto/roboto_normal.woff")format("woff") // ,
+        // url("./assets/fonts/roboto/roboto_normal.woff2") format("woff2"),
+        // url("./assets/fonts/roboto/roboto_normal.eot") format("embedded-opentype"),
+        // url("./assets/fonts/roboto/roboto_normal.ttf") format("truetype");
+    /* Add other formats as you see fit */
+}
+
 body {
+    font-family: roboto_normal;
+
     background: cornsilk;
 
     background-image: url("./assets/img/grad-bw.png");

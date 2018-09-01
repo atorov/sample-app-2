@@ -64,7 +64,23 @@ const config = {
                         name: './img/[name]-[hash].[ext]'
                     }
                 }
-            }
+            },
+
+            // Use a similar setup as for images and rely on both `file-loader`
+            // `and url-loader` while using the limit option.
+            {
+                // Match woff2 in addition to patterns like .woff?v=1.1.1.
+                test: /\.(ttf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                include: SRC,
+                exclude: NODE_MODULES,
+                use: {
+                    loader: "url-loader",
+                    options: {
+                        limit: 50000, // 50kB
+                        name: "fonts/[name]-[hash].[ext]"
+                    }
+                }
+            },
         ]
     },
 
