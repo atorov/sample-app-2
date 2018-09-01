@@ -1,17 +1,37 @@
 {
-    "presets": [
-        [
-            "@babel/preset-env",
-            {
-                "modules": false,
-                "useBuiltIns": "entry"
-            }
-        ],
-        [
-            "@babel/preset-react",
-            {
-                "useBuiltIns": "entry"
-            }
-        ]
-    ]
+    "env": {
+        "production": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "useBuiltIns": "entry"
+                    }
+                ],
+                [
+                    "@babel/preset-react",
+                    {
+                        "useBuiltIns": "entry"
+                    }
+                ]
+            ]
+        },
+        "development": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "modules": false,
+                        "useBuiltIns": "entry"
+                    }
+                ],
+                [
+                    "@babel/preset-react",
+                    {
+                        "useBuiltIns": "entry"
+                    }
+                ]
+            ]
+        }
+    }
 }

@@ -4,7 +4,8 @@ const path = require('path')
 const webpack = require('webpack')
 
 const NODE_ENV = process.env.NODE_ENV
-const MODE = NODE_ENV !== 'development' ? 'production' : NODE_ENV
+const MODE = NODE_ENV !== 'development' ? 'production' : 'development'
+process.env.BABEL_ENV = MODE;
 
 const NODE_MODULES = path.join(__dirname, 'node_modules')
 const SRC = path.join(__dirname, 'src')
@@ -163,8 +164,9 @@ if (MODE === 'development') {
 }
 
 console.log('::: ::: :::')
-console.log('::: MODE:', MODE)
-console.log('::: process.env.NODE_ENV (NODE_ENV):', NODE_ENV)
+console.log('::: MODE:\t\t\t\t', MODE)
+console.log('::: process.env.NODE_ENV (NODE_ENV):\t', NODE_ENV)
+console.log('::: process.env.BABEL_ENV:\t\t', process.env.BABEL_ENV)
 console.log('::: ::: :::')
 
 module.exports = config
