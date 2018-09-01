@@ -13,9 +13,13 @@ const SRC = path.join(__dirname, 'src')
 const config = {
     mode: MODE,
 
+    resolve: {
+        extensions: ['.js', '.jsx', 'ts', 'tsx']
+    },
+
     entry: [
         '@babel/polyfill',
-        SRC + '/index.tsx'
+        SRC
     ],
 
     module: {

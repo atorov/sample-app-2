@@ -5,12 +5,8 @@ import App from './components/App/index.jsx'
 
 // ---
 const myFun = () => {
-    const ab = {
-        aa: 'foo',
-        bb: 'bar'
-    }
-    const { aa, bb } = ab
-    console.log('::: a, b:', aa, bb)
+    const { aa: a, bb: b } = { aa: 'foo', bb: 'bar' }
+    console.log('::: a, b:', a, b)
 }
 myFun()
 // ---
