@@ -6,7 +6,8 @@ const webpack = require('webpack')
 const NODE_ENV = process.env.NODE_ENV
 const MODE = NODE_ENV !== 'development' ? 'production' : NODE_ENV
 
-const SRC_DIR = path.join(__dirname, 'src')
+const NODE_MODULES = path.join(__dirname, 'node_modules')
+const SRC = path.join(__dirname, 'src')
 
 const config = {
     mode: MODE,
@@ -15,10 +16,26 @@ const config = {
         rules: [
             {
                 test: /\.less$/,
-                // include,
-                // exclude,
-                use: MODE === 'production'
-                    ? [
+                include: SRC,
+                exclude: NODE_MODULES,
+                use: (() => {
+                    if (MODE === 'development') {
+                        return [
+                            'style-loader',
+                            'css-loader',
+                            {
+                                loader: 'postcss-loader',
+                                options: {
+                                    plugins: () => ([
+                                        require('autoprefixer')
+                                    ])
+                                }
+                            },
+                            'less-loader'
+                        ]
+                    }
+
+                    return [
                         MiniCssExtractPlugin.loader,
                         'css-loader',
                         {
@@ -31,19 +48,22 @@ const config = {
                         },
                         'less-loader'
                     ]
-                    : [
-                        'style-loader',
-                        'css-loader',
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: () => ([
-                                    require('autoprefixer')
-                                ])
-                            }
-                        },
-                        'less-loader'
-                    ]
+                })()
+            },
+
+            // `url- loader` uses `file-loader` implicitly when limit is set.
+            // Both have to be installed for the setup to work.
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                include: SRC,
+                exclude: NODE_MODULES,
+                use: {
+                    loader: "url-loader",
+                    options: {
+                        limit: 10000, // 10kB
+                        name: './img/[name]-[hash].[ext]'
+                    }
+                }
             }
         ]
     },
@@ -54,7 +74,7 @@ const config = {
         // you could do it by passing a path.
         // Example: filename: 'styles/[name].css'.
         new webpack.WatchIgnorePlugin([
-            path.join(__dirname, 'node_modules')
+            path.join(NODE_MODULES)
         ]),
 
         new HtmlWebpackPlugin({

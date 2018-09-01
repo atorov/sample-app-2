@@ -1,5 +1,8 @@
 body {
   background: cornsilk;
+  background-image: url(./img/grad-bw-ca0ef86e7252e93f433b18462eee2709.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .pure-button {
   border-radius: 1em;
