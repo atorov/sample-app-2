@@ -12,6 +12,11 @@ const SRC = path.join(__dirname, 'src')
 const config = {
     mode: MODE,
 
+    entry: [
+        "@babel/polyfill",
+        SRC
+    ],
+
     module: {
         rules: [
             {
@@ -58,7 +63,7 @@ const config = {
                 include: SRC,
                 exclude: NODE_MODULES,
                 use: {
-                    loader: "url-loader",
+                    loader: 'url-loader',
                     options: {
                         limit: 10000, // 10kB
                         name: './img/[name]-[hash].[ext]'
@@ -74,13 +79,23 @@ const config = {
                 include: SRC,
                 exclude: NODE_MODULES,
                 use: {
-                    loader: "url-loader",
+                    loader: 'url-loader',
                     options: {
                         limit: 50000, // 50kB
-                        name: "fonts/[name]-[hash].[ext]"
+                        name: 'fonts/[name]-[hash].[ext]'
                     }
                 }
             },
+
+            // Take the code and turns it into a format older browsers can understand.
+            {
+                test: /\.js$/,
+                // include: SRC,
+                // exclude: NODE_MODULES,
+                use: {
+                    loader: 'babel-loader'
+                }
+            }
         ]
     },
 
