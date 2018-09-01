@@ -15,7 +15,7 @@ const config = {
 
     entry: [
         '@babel/polyfill',
-        SRC + '/index.jsx'
+        SRC + '/index.tsx'
     ],
 
     module: {
@@ -95,6 +95,15 @@ const config = {
                 exclude: NODE_MODULES,
                 use: {
                     loader: 'babel-loader'
+                }
+            },
+
+            {
+                test: /\.tsx?$/,
+                include: SRC,
+                exclude: NODE_MODULES,
+                use: {
+                    loader: 'awesome-typescript-loader'
                 }
             }
         ]
