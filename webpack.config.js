@@ -100,15 +100,6 @@ const config = {
                 use: {
                     loader: 'babel-loader'
                 }
-            },
-
-            {
-                test: /\.tsx?$/,
-                include: SRC,
-                exclude: NODE_MODULES,
-                use: {
-                    loader: 'awesome-typescript-loader'
-                }
             }
         ]
     },
