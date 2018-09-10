@@ -125,7 +125,12 @@ const config = {
 }
 
 // Production mode only settings -----------------------------------------------
-// ...
+// Enable source-map for production and let webpack use the default for development.
+if (MODE === 'production') {
+    // `source-map` is the slowest and highest quality option of them all,
+    // but that's fine for a production build.
+    config.devtool = 'source-map'
+}
 
 // Development mode only settings ----------------------------------------------
 if (MODE === 'development') {
