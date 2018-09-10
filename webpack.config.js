@@ -130,6 +130,14 @@ if (MODE === 'production') {
     // `source-map` is the slowest and highest quality option of them all,
     // but that's fine for a production build.
     config.devtool = 'source-map'
+
+    // Extract a vendor bundle from the `node_modules` directory.
+    // `initial` - normal chunks that count towards initial loading time of the application.
+    config.optimization = {
+        splitChunks: {
+            chunks: 'initial'
+        }
+    }
 }
 
 // Development mode only settings ----------------------------------------------

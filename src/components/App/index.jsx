@@ -1,5 +1,4 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 
 import IdeaSvg from '../../assets/img/idea.svg'
 
