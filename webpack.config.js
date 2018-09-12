@@ -14,7 +14,7 @@ const config = {
     mode: MODE,
 
     resolve: {
-        extensions: ['.js', '.jsx', 'ts', 'tsx']
+        extensions: ['.js', '.jsx']
     },
 
     entry: [
