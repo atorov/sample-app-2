@@ -49,6 +49,7 @@ const config = {
                         // Webpack 5 is likely to come with a CSS minimizer built-in.
                         // For Webpack 4 you need to bring your own.
                         // This configuration DO NOT apply any CSS minimization algorithms!
+                        MiniCssExtractPlugin.loader,
                         'css-loader',
                         {
                             loader: 'postcss-loader',
