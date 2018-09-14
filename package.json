@@ -31,6 +31,7 @@
     "serve": "^10.0.1",
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
+    "uuid": "^3.3.2",
     "webpack": "^4.19.0",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8"
