@@ -3,11 +3,13 @@ import * as ReactDOM from 'react-dom'
 
 import uuidv4 from 'uuid/v4'
 
-import App from './components/App/index.jsx'
+import App from './components/App'
 
-import { bake } from "./lib/utils";
+import { bake } from './lib/utils'
 
-export { shake, bake };
+// ---
+bake()
+
 // ---
 const myFun = () => {
     const {
@@ -43,6 +45,6 @@ console.log('::: process.env.BABEL_ENV:', process.env.BABEL_ENV)
 console.log('::: ::: :::')
 
 ReactDOM.render(
-    <App />,
-    document.getElementById('app')
+  <App />,
+    document.getElementById('app'),
 )

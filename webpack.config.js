@@ -1,11 +1,12 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Autoprefixer = require('autoprefixer')
 const path = require('path')
 const webpack = require('webpack')
 
 const NODE_ENV = process.env.NODE_ENV
 const MODE = NODE_ENV !== 'development' ? 'production' : 'development'
-process.env.BABEL_ENV = MODE;
+process.env.BABEL_ENV = MODE
 
 const NODE_MODULES = path.join(__dirname, 'node_modules')
 const SRC = path.join(__dirname, 'src')
@@ -15,12 +16,12 @@ const config = {
     mode: MODE,
 
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
     },
 
     entry: [
         '@babel/polyfill',
-        SRC
+        SRC,
     ],
 
     output: {
@@ -43,12 +44,10 @@ const config = {
                             {
                                 loader: 'postcss-loader',
                                 options: {
-                                    plugins: () => ([
-                                        require('autoprefixer')
-                                    ])
-                                }
+                                    plugins: () => ([Autoprefixer]),
+                                },
                             },
-                            'less-loader'
+                            'less-loader',
                         ]
                     }
 
@@ -66,14 +65,12 @@ const config = {
                         {
                             loader: 'postcss-loader',
                             options: {
-                                plugins: () => ([
-                                    require('autoprefixer')
-                                ])
-                            }
+                                plugins: () => ([Autoprefixer]),
+                            },
                         },
-                        'less-loader'
+                        'less-loader',
                     ]
-                })()
+                })(),
             },
 
             // `url-loader` uses `file-loader` implicitly when limit is set.
@@ -88,9 +85,9 @@ const config = {
                     loader: 'url-loader',
                     options: {
                         limit: 10000, // 10kB
-                        name: 'img/[name].[hash:4].[ext]'
-                    }
-                }
+                        name: 'img/[name].[hash:4].[ext]',
+                    },
+                },
             },
 
             // Use a similar setup as for images and rely on both `file-loader`
@@ -104,9 +101,9 @@ const config = {
                     loader: 'url-loader',
                     options: {
                         limit: 50000, // 50kB
-                        name: 'fonts/[name].[hash:4].[ext]'
-                    }
-                }
+                        name: 'fonts/[name].[hash:4].[ext]',
+                    },
+                },
             },
 
             // Take the code and turns it into a format older browsers can understand.
@@ -115,10 +112,10 @@ const config = {
                 include: SRC,
                 exclude: NODE_MODULES,
                 use: {
-                    loader: 'babel-loader'
-                }
-            }
-        ]
+                    loader: 'babel-loader',
+                },
+            },
+        ],
     },
 
     plugins: [
@@ -127,25 +124,25 @@ const config = {
         // you could do it by passing a path.
         // Example: filename: 'styles/[name].css'.
         new webpack.WatchIgnorePlugin([
-            path.join(NODE_MODULES)
+            path.join(NODE_MODULES),
         ]),
 
         new webpack.DefinePlugin({
-            '__MODE__': JSON.stringify(MODE),
+            __MODE__: JSON.stringify(MODE),
             'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-            'process.env.BABEL_ENV': JSON.stringify(process.env.BABEL_ENV)
+            'process.env.BABEL_ENV': JSON.stringify(process.env.BABEL_ENV),
         }),
 
         new HtmlWebpackPlugin({
-            template: SRC + '/index.ejs'
+            template: SRC + '/index.ejs',
         }),
 
         // That [name] placeholder uses the name of the entry where the CSS is referred.
         // TODO: 'styles/[name].[contenthash:4].css'
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash:4].css'
-        })
-    ]
+            filename: '[name].[contenthash:4].css',
+        }),
+    ],
 }
 
 // Production mode only settings -----------------------------------------------
@@ -159,7 +156,7 @@ if (MODE === 'production') {
         // Extract a vendor bundle from the `node_modules` directory.
         // `initial` - normal chunks that count towards initial loading time of the application.
         splitChunks: {
-            chunks: 'initial'
+            chunks: 'initial',
         },
 
         // When webpack writes bundles, it maintains a manifest as well.
@@ -213,8 +210,8 @@ if (MODE === 'development') {
             aggregateTimeout: 300,
 
             // Poll using interval (in ms, accepts boolean too)
-            poll: 1000
-        }
+            poll: 1000,
+        },
     }
 }
 

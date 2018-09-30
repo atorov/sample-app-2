@@ -8,7 +8,7 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <img src={IdeaSvg} />
+                <img src={IdeaSvg} alt="" />
             </div>
         )
     }
