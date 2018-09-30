@@ -116,6 +116,12 @@ const config = {
             path.join(NODE_MODULES)
         ]),
 
+        new webpack.DefinePlugin({
+            "__MODE__": JSON.stringify(MODE),
+            "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
+            "process.env.BABEL_ENV": JSON.stringify(process.env.BABEL_ENV)
+        }),
+
         new HtmlWebpackPlugin({
             template: SRC + '/index.ejs'
         }),
