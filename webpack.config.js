@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Autoprefixer = require('autoprefixer')
+const Jarvis = require('webpack-jarvis')
 const path = require('path')
 const webpack = require('webpack')
 
@@ -142,6 +143,12 @@ const config = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash:4].css',
         }),
+
+        // J.A.R.V.I.S. will put in your browser all the relevant information you need
+        // from your webpack build whether in dev or in prod.
+        // In your browser open:
+        // localhost:1337
+        new Jarvis(),
     ],
 }
 
@@ -214,11 +221,5 @@ if (MODE === 'development') {
         },
     }
 }
-
-console.log('::: ::: :::')
-console.log('::: MODE:\t\t\t\t', MODE)
-console.log('::: process.env.NODE_ENV (NODE_ENV):\t', NODE_ENV)
-console.log('::: process.env.BABEL_ENV:\t\t', process.env.BABEL_ENV)
-console.log('::: ::: :::')
 
 module.exports = config

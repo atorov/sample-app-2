@@ -45,6 +45,6 @@ console.log('::: process.env.BABEL_ENV:', process.env.BABEL_ENV)
 console.log('::: ::: :::')
 
 ReactDOM.render(
-  <App />,
+    <App />,
     document.getElementById('app'),
 )

@@ -1,6 +1,6 @@
 module.exports = {
-    'extends': 'airbnb',
-    'rules': {
+    extends: 'airbnb',
+    rules: {
         // 'camelcase': 0,
         'prefer-destructuring': 0,
         'indent': ['error', 4],
@@ -20,4 +20,8 @@ module.exports = {
         'react/jsx-indent': ['error', 4],
         'react/prefer-stateless-function': 0,
     },
+    globals: {
+        __MODE__: '',
+        document: {},
+    }
 }
