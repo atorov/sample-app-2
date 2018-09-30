@@ -107,6 +107,21 @@ const config = {
                 },
             },
 
+            // Web workers allow you to push work outside of
+            // main execution thread of JavaScript making them
+            // convenient for lengthy computations and background work.
+            {
+                test: /\.worker\.js$/,
+                include: SRC,
+                exclude: NODE_MODULES,
+                use: {
+                    loader: 'worker-loader',
+                    options: {
+                        name: '[name].[hash:4].js',
+                    },
+                },
+            },
+
             // Take the code and turns it into a format older browsers can understand.
             {
                 test: /\.jsx?$/,
@@ -184,6 +199,10 @@ if (MODE === 'production') {
 
 // Development mode only settings ----------------------------------------------
 if (MODE === 'development') {
+    // Webpack will generate source maps automatically for you in development mode.
+    // The inline source map is valuable during development due to better performance.
+    // config.devtool = 'source-map'
+
     // WDS
     config.devServer = {
         // Assuming you don't generate index.html dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it.

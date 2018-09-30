@@ -18,10 +18,12 @@ module.exports = {
         'semi-style': ['error', 'first'],
 
         'react/jsx-indent': ['error', 4],
+        'react/jsx-indent-props': ['error', 4],
         'react/prefer-stateless-function': 0,
     },
     globals: {
         __MODE__: '',
         document: {},
+        window: {},
     }
 }

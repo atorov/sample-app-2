@@ -9,6 +9,7 @@ import { bake } from './lib/misc/bake-and-shake'
 
 // ---
 bake()
+// throw new Error('Custom Error') // An error will be thrown here! yupieeeyy 🙈
 
 // ---
 // TODO: use babel-eslint to avoid error messages until import() is still experimental
