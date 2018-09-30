@@ -10,6 +10,14 @@ console.log(SampleWorker)
 
 export default class App extends React.Component {
     componentDidMount() {
+        this.initialize()
+    }
+
+    componentWillUnmount() {
+        this.terminate()
+    }
+
+    initialize() {
         this.sampleWorker = new SampleWorker('demo_workers.js')
         this.sampleWorker.addEventListener(
             'message',
@@ -17,7 +25,7 @@ export default class App extends React.Component {
         )
     }
 
-    componentWillUnmount() {
+    terminate() {
         this.sampleWorker.terminate()
         this.sampleWorker = undefined
     }
