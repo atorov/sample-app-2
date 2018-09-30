@@ -155,12 +155,26 @@ if (MODE === 'production') {
     // but that's fine for a production build.
     config.devtool = 'source-map'
 
-    // Extract a vendor bundle from the `node_modules` directory.
-    // `initial` - normal chunks that count towards initial loading time of the application.
     config.optimization = {
+        // Extract a vendor bundle from the `node_modules` directory.
+        // `initial` - normal chunks that count towards initial loading time of the application.
         splitChunks: {
             chunks: 'initial'
-        }
+        },
+
+        // When webpack writes bundles, it maintains a manifest as well.
+        // You can find it in the generated vendor bundle in this project.
+        // The manifest describes what files webpack should load.
+        // It's possible to extract it and start loading the files of the project faster
+        // instead of having to wait for the vendor bundle to be loaded.
+        // The name manifest is used by convention. You can use any other name, and it will still work.
+        // Because this setup is using HtmlWebpackPlugin,
+        // there is no need to worry about loading the manifest ourselves
+        // as the plugin adds a reference to index.html.
+        // Extracting the manifest to a file of its own:
+        runtimeChunk: {
+            name: 'manifest',
+        },
     }
 }
 
