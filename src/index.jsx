@@ -1,10 +1,13 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import uuidv4 from 'uuid/v4';
+import uuidv4 from 'uuid/v4'
 
 import App from './components/App/index.jsx'
 
+import { bake } from "./lib/utils";
+
+export { shake, bake };
 // ---
 const myFun = () => {
     const {
