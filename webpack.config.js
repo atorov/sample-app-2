@@ -9,6 +9,7 @@ process.env.BABEL_ENV = MODE;
 
 const NODE_MODULES = path.join(__dirname, 'node_modules')
 const SRC = path.join(__dirname, 'src')
+// const DIST = path.join(__dirname, 'dist')
 
 const config = {
     mode: MODE,
@@ -21,6 +22,12 @@ const config = {
         '@babel/polyfill',
         SRC
     ],
+
+    output: {
+        // path: DIST,
+        chunkFilename: '[name].[chunkhash:4].js',
+        filename: '[name].[chunkhash:4].js',
+    },
 
     module: {
         rules: [
@@ -49,6 +56,11 @@ const config = {
                         // Webpack 5 is likely to come with a CSS minimizer built-in.
                         // For Webpack 4 you need to bring your own.
                         // This configuration DO NOT apply any CSS minimization algorithms!
+                        // Using `chunkhash` for the extracted CSS would lead to problems
+                        // as the code points to the CSS through JavaScript bringing it to the same entry.
+                        // That means if the application code or CSS changed, it would invalidate both.
+                        // Therefore, instead of chunkhash, you can use
+                        // `contenthash` that is generated based on the extracted content.
                         MiniCssExtractPlugin.loader,
                         'css-loader',
                         {
@@ -64,8 +76,10 @@ const config = {
                 })()
             },
 
-            // `url- loader` uses `file-loader` implicitly when limit is set.
+            // `url-loader` uses `file-loader` implicitly when limit is set.
             // Both have to be installed for the setup to work.
+            // [hash] is defined differently for file-loader than for the rest of webpack.
+            // It's calculated based on file content.
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
                 include: SRC,
@@ -74,7 +88,7 @@ const config = {
                     loader: 'url-loader',
                     options: {
                         limit: 10000, // 10kB
-                        name: './img/[name]-[hash].[ext]'
+                        name: 'img/[name].[hash:4].[ext]'
                     }
                 }
             },
@@ -90,7 +104,7 @@ const config = {
                     loader: 'url-loader',
                     options: {
                         limit: 50000, // 50kB
-                        name: 'fonts/[name]-[hash].[ext]'
+                        name: 'fonts/[name].[hash:4].[ext]'
                     }
                 }
             },
@@ -117,9 +131,9 @@ const config = {
         ]),
 
         new webpack.DefinePlugin({
-            "__MODE__": JSON.stringify(MODE),
-            "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
-            "process.env.BABEL_ENV": JSON.stringify(process.env.BABEL_ENV)
+            '__MODE__': JSON.stringify(MODE),
+            'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+            'process.env.BABEL_ENV': JSON.stringify(process.env.BABEL_ENV)
         }),
 
         new HtmlWebpackPlugin({
@@ -127,8 +141,9 @@ const config = {
         }),
 
         // That [name] placeholder uses the name of the entry where the CSS is referred.
+        // TODO: 'styles/[name].[contenthash:4].css'
         new MiniCssExtractPlugin({
-            filename: '[name].css',
+            filename: '[name].[contenthash:4].css'
         })
     ]
 }
