@@ -1,6 +1,9 @@
 {
     "env": {
         "production": {
+            "plugins": [
+                "@babel/plugin-syntax-dynamic-import"
+            ],
             "presets": [
                 [
                     "@babel/preset-env",
@@ -16,7 +19,11 @@
                 ]
             ]
         },
+
         "development": {
+            "plugins": [
+                "@babel/plugin-syntax-dynamic-import"
+            ],
             "presets": [
                 [
                     "@babel/preset-env",

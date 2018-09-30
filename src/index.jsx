@@ -5,10 +5,22 @@ import uuidv4 from 'uuid/v4'
 
 import App from './components/App'
 
-import { bake } from './lib/utils'
+import { bake } from './lib/misc/bake-and-shake'
 
 // ---
 bake()
+
+// ---
+// TODO: use babel-eslint to avoid error messages until import() is still experimental
+// let dynamicConfig = {}
+// import (`./lib/misc/dynamic-settings-${process.env.NODE_ENV}.json`)
+//     .then(data => {
+//             dynamicConfig = data
+//             console.log('::: dynamicConfig:', JSON.stringify(dynamicConfig, null, 2))
+//         })
+//         .catch((reason) => {
+//             console.error('::: reason:', reason)
+//         })
 
 // ---
 const myFun = () => {
