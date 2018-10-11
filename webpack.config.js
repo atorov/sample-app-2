@@ -1,9 +1,10 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Autoprefixer = require('autoprefixer')
-const Jarvis = require('webpack-jarvis')
 const path = require('path')
 const webpack = require('webpack')
+
+const Autoprefixer = require('autoprefixer')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Jarvis = require('webpack-jarvis')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const NODE_ENV = process.env.NODE_ENV
 const MODE = NODE_ENV !== 'development' ? 'production' : 'development'
