@@ -30,6 +30,10 @@ const config = {
         // path: DIST,
         chunkFilename: '[name].[chunkhash:4].js',
         filename: '[name].[chunkhash:4].js',
+
+        // `publicPath` gives control over the resulting urls you see at index.html for instance.
+        // If you are hosting your assets on a CDN, this would be the place to tweak.
+        publicPath: '/',
     },
 
     module: {
