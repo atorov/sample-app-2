@@ -7,6 +7,8 @@ import App from './components/App'
 
 import { bake } from './lib/misc/bake-and-shake'
 
+import sampleJson from './assets/xdata/sample'
+
 // ---
 bake()
 // throw new Error('Custom Error') // An error will be thrown here! yupieeeyy 🙈
@@ -56,6 +58,12 @@ console.log('::: __MODE___:', __MODE__)
 console.log('::: process.env.NODE_ENV (NODE_ENV):', process.env.NODE_ENV)
 console.log('::: process.env.BABEL_ENV:', process.env.BABEL_ENV)
 console.log('::: ::: :::')
+
+// ---
+
+console.log('::: sample.json', sampleJson)
+
+// ---
 
 ReactDOM.render(
     <App />,

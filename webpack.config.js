@@ -17,8 +17,10 @@ const SRC = path.join(__dirname, 'src')
 const config = {
     mode: MODE,
 
+    // By default, webpack will resolve only against .js and .json files
+    // while importing without an extension.
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.json', '.jsx'],
     },
 
     entry: [
