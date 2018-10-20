@@ -65,7 +65,14 @@ console.log('::: sample.json', sampleJson)
 
 // ---
 
+console.log('::: module.hot:', module.hot)
+// console.log('::: module.hotOnly:', module.hotOnly)
+
+// ---
+
 ReactDOM.render(
     <App />,
     document.getElementById('app'),
 )
+
+if (module.hot) module.hot.accept()

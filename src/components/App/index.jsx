@@ -1,4 +1,7 @@
 import * as React from 'react'
+// import { hot } from 'react-hot-loader'
+
+import SampleComponent from '../SampleComponent'
 
 import IdeaSvg from '../../assets/img/idea.svg'
 
@@ -9,6 +12,13 @@ import './style.less'
 console.log(SampleWorker)
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            check: false,
+        }
+    }
+
     componentDidMount() {
         this.initialize()
     }
@@ -44,7 +54,24 @@ export default class App extends React.Component {
                 >
                     Sample Web Worker: Send a Ping!
                 </button>
+                <br />
+
+                <input
+                    name="check"
+                    type="checkbox"
+                    checked={this.state.check}
+                    onChange={() => this.setState(prevState => ({ check: !prevState.check }))}
+                />
+                <br />
+
+                <div>
+                    Sample Text ...
+                </div>
+
+                <SampleComponent />
             </div>
         )
     }
 }
+
+// export default module.hot ? hot(module)(App) : App

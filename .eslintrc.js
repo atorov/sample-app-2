@@ -20,6 +20,7 @@ module.exports = {
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
         'react/prefer-stateless-function': 0,
+        'react/destructuring-assignment': 0,
     },
     globals: {
         __MODE__: '',

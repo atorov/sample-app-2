@@ -28,10 +28,9 @@ const config = {
         SRC,
     ],
 
+    // output see bellow (dev/prod configurations)
     output: {
         // path: DIST,
-        chunkFilename: '[name].[chunkhash:4].js',
-        filename: '[name].[chunkhash:4].js',
 
         // `publicPath` gives control over the resulting urls you see at index.html for instance.
         // If you are hosting your assets on a CDN, this would be the place to tweak.
@@ -177,6 +176,10 @@ const config = {
 // Production mode only settings -----------------------------------------------
 // Enable source-map for production and let webpack use the default for development.
 if (MODE === 'production') {
+    // Output
+    config.output.chunkFilename = '[name].[chunkhash:4].js'
+    config.output.filename = '[name].[chunkhash:4].js'
+
     // `source-map` is the slowest and highest quality option of them all,
     // but that's fine for a production build.
     config.devtool = 'source-map'
@@ -206,6 +209,11 @@ if (MODE === 'production') {
 
 // Development mode only settings ----------------------------------------------
 if (MODE === 'development') {
+    // Output
+    // config.output.chunkFilename = '[name].[hash:4].js'
+    // config.output.filename = '[name].[hash:4].js'
+    config.output.globalObject = 'this' // fixed this issue: https://github.com/webpack/webpack/issues/6642
+
     // Webpack will generate source maps automatically for you in development mode.
     // The inline source map is valuable during development due to better performance.
     // config.devtool = 'source-map'
@@ -215,7 +223,7 @@ if (MODE === 'development') {
         // Assuming you don't generate index.html dynamically and prefer to maintain it yourself in a specific directory, you need to point WDS to it.
         // `contentBase` accepts either a path (e.g., 'build') or an array of paths (e.g., ['build', 'images']).
         // The value defaults to the project root.
-        // contentBase: ...
+        // contentBase: './',
 
         // Parse host and port from env to allow customization.
         // If you use Docker, Vagrant or Cloud9, set
@@ -238,6 +246,13 @@ if (MODE === 'development') {
         // `overlay` does not capture runtime errors of the application.
         overlay: true,
 
+        // Don't refresh if hot loading fails.
+        // Good while implementing the client interface.
+        hotOnly: true,
+
+        // If you want to refresh on errors too, set
+        // hot: true,
+
         watchOptions: {
             // Delay the rebuild after the first change
             aggregateTimeout: 300,
@@ -246,6 +261,23 @@ if (MODE === 'development') {
             poll: 1000,
         },
     }
+
+    // Enable the plugin to let webpack communicate changes to WDS.
+    // `--hot` sets this automatically!
+    config.plugins.push(new webpack.HotModuleReplacementPlugin())
+
+    // HMR notes:
+    // ----------
+    // The setup assumes you have enabled webpack.NamedModulesPlugin().
+    // If you run webpack in development mode, it will be on by default.
+    //
+    // You should not enable HMR for your production configuration.
+    // It likely works, but it makes your bundles more significant than they should be.
+    //
+    // If you are using Babel,
+    // configure it so that it lets webpack control module generation as otherwise,
+    // HMR logic won't work!
+    // `"modules": false`
 }
 
 module.exports = config
