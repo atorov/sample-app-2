@@ -5,5 +5,5 @@
 const ctx = self
 
 ctx.onmessage = ({ data: { message } }) => {
-    setTimeout(() => ctx.postMessage({ message: message + ' Pong!' }), 1500)
+    setTimeout(() => ctx.postMessage({ message: `Received a ${message} and sending a Pong!` }), 1500)
 };

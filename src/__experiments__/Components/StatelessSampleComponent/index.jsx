@@ -5,7 +5,7 @@ export default class extends React.Component {
     render() {
         return (
             <div>
-                Sample Component ...
+                This is just the content of a sample component ...
             </div>
         )
     }

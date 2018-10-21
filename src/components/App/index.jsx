@@ -1,74 +1,36 @@
-import * as React from 'react'
+import React from 'react'
 // import { hot } from 'react-hot-loader'
 
-import SampleComponent from '../SampleComponent'
+import SampleWorkerDemo from '../../__experiments__/Components/SampleWorkerDemo'
 
-import IdeaSvg from '../../assets/img/idea.svg'
-
-import SampleWorker from '../../workers/sample.worker'
+import SampleComponent from '../../__experiments__/Components/SampleComponent'
+import SampleImage from '../../__experiments__/Components/SampleImage'
+import StatelessSampleComponent from '../../__experiments__/Components/StatelessSampleComponent'
 
 import './style.less'
 
-console.log(SampleWorker)
-
 export default class App extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            check: false,
-        }
-    }
-
-    componentDidMount() {
-        this.initialize()
-    }
-
-    componentWillUnmount() {
-        this.terminate()
-    }
-
-    initialize() {
-        this.sampleWorker = new SampleWorker('demo_workers.js')
-        this.sampleWorker.addEventListener(
-            'message',
-            res => console.log('::: sampleWorker.res.message:', res.data.message),
-        )
-    }
-
-    terminate() {
-        this.sampleWorker.terminate()
-        this.sampleWorker = undefined
-    }
-
     render() {
         return (
             <div>
-                <img src={IdeaSvg} alt="" />
+                <hr />
 
-                <button
-                    type="button"
-                    onClick={() => {
-                        console.log('::: Ping sent')
-                        this.sampleWorker.postMessage({ message: 'Ping!' })
-                    }}
-                >
-                    Sample Web Worker: Send a Ping!
-                </button>
-                <br />
+                <SampleWorkerDemo />
+                <hr />
 
-                <input
-                    name="check"
-                    type="checkbox"
-                    checked={this.state.check}
-                    onChange={() => this.setState(prevState => ({ check: !prevState.check }))}
-                />
-                <br />
-
-                <div>
-                    Sample Text ...
-                </div>
+                <StatelessSampleComponent />
+                <hr />
 
                 <SampleComponent />
+                <hr />
+
+                <SampleImage />
+                <hr />
+
+                <div>
+                    App component main content goes here ...
+                </div>
+                <hr />
             </div>
         )
     }
