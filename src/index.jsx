@@ -4,7 +4,8 @@ import ReactRedux from 'react-redux'
 
 import xdata from './assets/xdata/sample'
 
-import App from './components/App'
+// import App from './components/App'
+import Router from './components/Router'
 
 import './__experiments__'
 
@@ -19,7 +20,7 @@ console.log('::: ::: :::')
 
 ReactDOM.render(
     <ReactRedux.Provider store={{}}>
-        <App />
+        {Router}
     </ReactRedux.Provider>,
     document.getElementById('app'),
 )

@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 // import { hot } from 'react-hot-loader'
 
 import SampleWorkerDemo from '../../__experiments__/Components/SampleWorkerDemo'
@@ -9,7 +11,7 @@ import StatelessSampleComponent from '../../__experiments__/Components/Stateless
 
 import './style.less'
 
-export default class App extends React.Component {
+class App extends React.Component {
     render() {
         return (
             <div>
@@ -28,12 +30,23 @@ export default class App extends React.Component {
                 <hr />
 
                 <div>
-                    App component main content goes here ...
+                    Some App component content goes here ...
+                </div>
+                <hr />
+
+                <div>
+                    {this.props.children}
                 </div>
                 <hr />
             </div>
         )
     }
 }
+
+App.propTypes = {
+    children: PropTypes.any.isRequired,
+}
+
+export default App
 
 // export default module.hot ? hot(module)(App) : App
