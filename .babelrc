@@ -41,5 +41,13 @@
                 ]
             ]
         }
-    }
+    },
+    "ignore": [
+        "__storage__",
+        "build",
+        "dist",
+        "docs",
+        "externals",
+        "node_modules"
+    ]
 }
