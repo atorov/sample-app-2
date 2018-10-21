@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ReactRedux from 'react-redux'
 
 import xdata from './assets/xdata/sample'
 
@@ -17,7 +18,9 @@ console.log('::: sample.json', xdata)
 console.log('::: ::: :::')
 
 ReactDOM.render(
-    <App />,
+    <ReactRedux.Provider store={{}}>
+        <App />
+    </ReactRedux.Provider>,
     document.getElementById('app'),
 )
 
