@@ -1,6 +1,5 @@
-Sample App v2
-===
+# Sample App v2
 
-1. __Overview__
+## 1. Overview
 
 A boilerplate project ...
