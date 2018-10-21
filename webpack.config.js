@@ -2,17 +2,29 @@ const path = require('path')
 const webpack = require('webpack')
 
 const Autoprefixer = require('autoprefixer')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Jarvis = require('webpack-jarvis')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const pkg = require('./package.json')
+
+const HOST = process.env.HOST || '0.0.0.0' // `process.env.HOST` defaults to `localhost`
+const PORT = process.env.PORT // Defaults to 8080
+
+const NODE_MODULES = path.resolve(__dirname, 'node_modules')
+const EXTERNALS = path.resolve(__dirname, 'externals')
+const STORAGE = path.resolve(__dirname, 'storage')
+const EXCLUDE_DEFAULT = [NODE_MODULES, EXTERNALS, STORAGE]
+
+const SRC = path.resolve(__dirname, 'src')
+const DIST = path.resolve(__dirname, 'build/www')
 
 const NODE_ENV = process.env.NODE_ENV
 const MODE = NODE_ENV !== 'development' ? 'production' : 'development'
 process.env.BABEL_ENV = MODE
 
-const NODE_MODULES = path.join(__dirname, 'node_modules')
-const SRC = path.join(__dirname, 'src')
-// const DIST = path.join(__dirname, 'dist')
+const APP_VERSION = JSON.stringify(pkg.version)
 
 const config = {
     mode: MODE,
@@ -23,6 +35,12 @@ const config = {
         extensions: ['.js', '.json', '.jsx'],
     },
 
+    // The base directory, an absolute path, for resolving entry points and loaders from configuration.
+    // By default the current directory is used,
+    // but it's recommended to pass a value in your configuration.
+    // This makes your configuration independent from CWD (current working directory).
+    // context: path.resolve(__dirname, '...')
+
     entry: [
         '@babel/polyfill',
         SRC,
@@ -30,11 +48,11 @@ const config = {
 
     // output see bellow (dev/prod configurations)
     output: {
-        // path: DIST,
+        path: DIST,
 
         // `publicPath` gives control over the resulting urls you see at index.html for instance.
         // If you are hosting your assets on a CDN, this would be the place to tweak.
-        publicPath: '/',
+        // publicPath: '/',
     },
 
     module: {
@@ -42,7 +60,7 @@ const config = {
             {
                 test: /\.less$/,
                 include: SRC,
-                exclude: NODE_MODULES,
+                exclude: EXCLUDE_DEFAULT,
                 use: (() => {
                     if (MODE === 'development') {
                         return [
@@ -87,7 +105,7 @@ const config = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
                 include: SRC,
-                exclude: NODE_MODULES,
+                exclude: EXCLUDE_DEFAULT,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -103,7 +121,7 @@ const config = {
                 // Match woff2 in addition to patterns like .woff?v=1.1.1.
                 test: /\.(ttf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
                 include: SRC,
-                exclude: NODE_MODULES,
+                exclude: EXCLUDE_DEFAULT,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -119,7 +137,7 @@ const config = {
             {
                 test: /\.worker\.js$/,
                 include: SRC,
-                exclude: NODE_MODULES,
+                exclude: EXCLUDE_DEFAULT,
                 use: {
                     loader: 'worker-loader',
                     options: {
@@ -132,7 +150,7 @@ const config = {
             {
                 test: /\.jsx?$/,
                 include: SRC,
-                exclude: NODE_MODULES,
+                exclude: EXCLUDE_DEFAULT,
                 use: {
                     loader: 'babel-loader',
                 },
@@ -145,17 +163,17 @@ const config = {
         // If you wanted to output the resulting file to a specific directory,
         // you could do it by passing a path.
         // Example: filename: 'styles/[name].css'.
-        new webpack.WatchIgnorePlugin([
-            path.join(NODE_MODULES),
-        ]),
+        new webpack.WatchIgnorePlugin(EXCLUDE_DEFAULT),
 
         new webpack.DefinePlugin({
+            __APP_VERSION__: JSON.stringify(APP_VERSION),
             __MODE__: JSON.stringify(MODE),
             'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
             'process.env.BABEL_ENV': JSON.stringify(process.env.BABEL_ENV),
         }),
 
         new HtmlWebpackPlugin({
+            filename: DIST + '/index.html',
             template: SRC + '/index.ejs',
         }),
 
@@ -170,6 +188,26 @@ const config = {
         // In your browser open:
         // localhost:1337
         new Jarvis(),
+
+        new CopyWebpackPlugin(
+            [
+                {
+                    from: SRC + '/assets/img/favicon.png',
+                    to: DIST,
+                },
+                {
+                    from: SRC + '/assets/xdata/sample.json',
+                    to: DIST,
+                },
+                {
+                    from: SRC + '/assets/xdata',
+                    to: path.resolve(DIST, '../xdata'),
+                },
+            ],
+            {
+                ignore: ['.DS_Store'],
+            },
+        ),
     ],
 }
 
@@ -230,8 +268,8 @@ if (MODE === 'development') {
         // host: options.host || '0.0.0.0'
         // 0.0.0.0 is available to all network devices
         // unlike default `localhost`.
-        host: process.env.HOST, // Defaults to `localhost`
-        port: process.env.PORT, // Defaults to 8080
+        host: HOST, // Defaults to `localhost`
+        port: PORT, // Defaults to 8080
 
         // Enables HTML5 history API based routing
         historyApiFallback: true,
@@ -259,6 +297,21 @@ if (MODE === 'development') {
 
             // Poll using interval (in ms, accepts boolean too)
             poll: 1000,
+
+            // What is the difference between watchOptions.ignored and webpack.WatchIgnorePlugin
+            // issue: https://stackoverflow.com/questions/48361956/what-is-the-difference-between-watchoptions-ignored-and-webpack-watchignoreplugi
+            ignored: EXCLUDE_DEFAULT,
+
+            // The bundled files will be available in the browser under this path.
+            // Imagine that the server is running under http://localhost:080
+            // and output.filename is set to bundle.js.
+            // By default the publicPath is "/",
+            // so your bundle is available as http://localhost:8080/bundle.js.
+            // The publicPath can be changed so the bundle is put in a different directory.
+            // Make sure publicPath always starts and ends with a forward slash.
+            // It is also possible to use a full URL.This is necessary for Hot Module Replacement.
+            // It is recommended that devServer.publicPath is the same as output.publicPath.
+            // publicPath: "/",
         },
     }
 

@@ -23,6 +23,7 @@ module.exports = {
         'react/destructuring-assignment': 0,
     },
     globals: {
+        __APP_VERSION__: true,
         __MODE__: '',
         document: {},
         window: {},
