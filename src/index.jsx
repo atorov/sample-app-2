@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ReactRedux from 'react-redux'
+import { Provider } from 'react-redux'
 
 import xdata from './assets/xdata/sample'
 
@@ -19,9 +19,9 @@ console.log('::: sample.json', xdata)
 console.log('::: ::: :::')
 
 ReactDOM.render(
-    <ReactRedux.Provider store={{}}>
+    <Provider store={{}}>
         {Router}
-    </ReactRedux.Provider>,
+    </Provider>,
     document.getElementById('app'),
 )
 
