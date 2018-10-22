@@ -9,6 +9,8 @@ import Router from './components/Router'
 
 import './__experiments__'
 
+import configureStore from './redux/configureStore'
+
 console.log('::: ::: :::')
 console.log('::: __APP_VERSION__:', __APP_VERSION__)
 console.log('::: __MODE__:', __MODE__)
@@ -18,11 +20,23 @@ console.log('::: module.hot:', !!module.hot)
 console.log('::: sample.json', xdata)
 console.log('::: ::: :::')
 
+export const store = configureStore({
+    persist: true,
+    persistInclude: [],
+    persistExclude: [],
+    debounce: 500,
+    logger: true && process.env.NODE_ENV === 'development',
+})
+
 ReactDOM.render(
-    <Provider store={{}}>
+    <Provider store={store}>
         {Router}
     </Provider>,
     document.getElementById('app'),
 )
 
-if (module.hot) module.hot.accept()
+if (module.hot) {
+    module.hot.accept()
+}
+
+export default null

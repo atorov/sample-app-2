@@ -200,8 +200,8 @@ const config = {
                     to: DIST,
                 },
                 {
-                    from: SRC + '/assets/xdata',
-                    to: path.resolve(DIST, '../xdata'),
+                    from: SRC + '/assets/xsettings',
+                    to: path.resolve(DIST, '../xsettings'),
                 },
             ],
             {

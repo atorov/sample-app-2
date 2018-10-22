@@ -12,6 +12,29 @@ import StatelessSampleComponent from '../../__experiments__/Components/Stateless
 import './style.less'
 
 class App extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.init = this.init.bind()
+        this.terminate = this.terminate.bind()
+    }
+
+    componentDidMount() {
+        this.init()
+    }
+
+    componentWillUnmount() {
+        this.terminate()
+    }
+
+    init() {
+        console.log(this)
+    }
+
+    terminate() {
+        console.log(this)
+    }
+
     render() {
         return (
             <div>
