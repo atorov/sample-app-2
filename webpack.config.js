@@ -55,6 +55,11 @@ const config = {
         // publicPath: '/',
     },
 
+    performance: {
+        maxEntrypointSize: MODE === 'production' ? 1000000 : 5000000,
+        maxAssetSize: MODE === 'production' ? 1000000 : 5000000,
+    },
+
     module: {
         rules: [
             {
