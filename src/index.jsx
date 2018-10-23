@@ -4,8 +4,7 @@ import { Provider } from 'react-redux'
 
 import xdata from './assets/xdata/sample'
 
-// import App from './components/App'
-import Router from './components/Router'
+import App from './components/App'
 
 import './__experiments__'
 
@@ -22,21 +21,24 @@ console.log('::: ::: :::')
 
 export const store = configureStore({
     persist: true,
-    persistInclude: [],
-    persistExclude: [],
-    debounce: 500,
-    logger: true && process.env.NODE_ENV === 'development',
+    // include: [],
+    // exclude: [],
+    // throttle: 550,
+    // logger: true && process.env.NODE_ENV === 'development',
 })
 
 ReactDOM.render(
-    <Provider store={store}>
-        {Router}
-    </Provider>,
+    <Provider store={store}><App /></Provider>,
     document.getElementById('app'),
 )
 
-if (module.hot) {
-    module.hot.accept()
-}
+// <Provider> does not support changing `store` on the fly.
+// Redux 2.x and React Redux 2.x which no longer hot reload reducers automatically.
+// See https://github.com/reactjs/react-redux/releases/tag/v2.0.0 for the migration instructions.
+// if (module.hot) {
+//     module.hot.accept()
+// }
+// The situation for the current project:
+// Only changes wrapped with <App /> support HMR!
 
 export default null

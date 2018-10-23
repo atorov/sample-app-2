@@ -10,12 +10,12 @@ import initState from '../reducers/config/initState'
 
 const XSETTINGS_SOURCE = '/xsettings/xsettings.json'
 
-export function config_Reset() {
+function config_Reset() {
     return { type: CONFIG_RESET };
 }
 
 // Complex action creators -----------------------------------------------------
-export function config_LoadXsettings() {
+function config_LoadXsettings() {
     return (dispatch) => {
         dispatch({
             type: CONFIG_SET_XSETTINGS,
@@ -44,4 +44,9 @@ export function config_LoadXsettings() {
             })
         ;
     };
+}
+
+export default {
+    config_Reset,
+    config_LoadXsettings,
 }

@@ -1,41 +1,34 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
-// import { hot } from 'react-hot-loader'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { hot } from 'react-hot-loader'
 
+import {
+    BrowserRouter,
+    Redirect,
+    Route,
+    Switch,
+} from 'react-router-dom'
+
+import actionCreators from '../../redux/action-creators'
 import SampleWorkerDemo from '../../__experiments__/Components/SampleWorkerDemo'
 
 import SampleComponent from '../../__experiments__/Components/SampleComponent'
 import SampleImage from '../../__experiments__/Components/SampleImage'
 import StatelessSampleComponent from '../../__experiments__/Components/StatelessSampleComponent'
 
+import Home from '../Home'
+import Page1 from '../Page1'
+
 import './style.less'
 
 class App extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.init = this.init.bind()
-        this.terminate = this.terminate.bind()
-    }
-
-    componentDidMount() {
-        this.init()
-    }
-
-    componentWillUnmount() {
-        this.terminate()
-    }
-
-    init() {
-        console.log(this)
-    }
-
-    terminate() {
-        console.log(this)
-    }
-
     render() {
+        // console.log('::: App.props', this.props)
+        // console.log('::: App.state', this.state)
+
         return (
             <div>
                 <hr />
@@ -56,20 +49,31 @@ class App extends React.Component {
                     Some App component content goes here ...
                 </div>
                 <hr />
-
-                <div>
-                    {this.props.children}
-                </div>
+                <BrowserRouter>
+                    <div id="router">
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route exact path="/page1" component={Page1} />
+                            <Redirect to="/" />
+                        </Switch>
+                    </div>
+                </BrowserRouter>
                 <hr />
             </div>
         )
     }
 }
 
-App.propTypes = {
-    children: PropTypes.any.isRequired,
-}
+const mapStateToProps = (state, ownProps) => ({
+    ...state,
+    ...ownProps,
+})
+const mapDispatchToProps = dispatch => bindActionCreators(
+    { ...actionCreators },
+    dispatch,
+)
 
-export default App
+const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(App)
+export default module.hot ? hot(module)(connectedComponent) : connectedComponent
 
 // export default module.hot ? hot(module)(App) : App
