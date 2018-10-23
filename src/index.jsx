@@ -20,7 +20,7 @@ console.log('::: sample.json', xdata)
 console.log('::: ::: :::')
 
 export const store = configureStore({
-    persist: true,
+    // persist: true,
     // include: [],
     // exclude: [],
     // throttle: 550,

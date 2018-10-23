@@ -59,6 +59,11 @@ class Content extends React.Component {
                 <em>toggle ui.test</em>
                 <br />
                 <br />
+
+                ui.appWidth:&nbsp;
+                <em>{this.props.ui.appWidth}</em>
+                <br />
+                <br />
             </div>
         )
     }

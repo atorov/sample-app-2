@@ -11,7 +11,12 @@ export default class App extends React.Component {
                 </span>
                 <br />
 
-                <img src={IdeaSvg} alt="" />
+                <img
+                    src={IdeaSvg}
+                    alt=""
+                    width="100px"
+                    height="100px"
+                />
             </div>
         )
     }

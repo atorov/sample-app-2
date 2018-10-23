@@ -9,6 +9,14 @@ function ui_Set(payload) {
     };
 }
 
+function ui_SetAppWidth(payload) {
+    return {
+        type: UI_SET,
+        payload,
+    };
+}
+
 export default {
     ui_Set,
+    ui_SetAppWidth,
 }

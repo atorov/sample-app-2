@@ -12,22 +12,23 @@
     /* Add other formats as you see fit */
 }
 
-body {
+html, body {
     font-family: roboto_normal;
+}
 
+#app {
     background: cornsilk;
     // background: red;
-
     background-image: url("../../assets/img/grad-bw.png");
     background-repeat: no-repeat;
     background-position: center;
-}
 
-.pure-button {
-    -webkit-border-radius: 1em;
-    border-radius: 1em;
-}
+    #app-routes {
+        max-height: 300px;
 
-.my-container {
-    display: flex;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        background-color: rgba(255, 165, 0, 0.5);
+    }
 }
