@@ -320,6 +320,14 @@ if (MODE === 'development') {
             // It is recommended that devServer.publicPath is the same as output.publicPath.
             // publicPath: "/",
         },
+
+        // proxy: [
+        //     {
+        //         context: ['/api/**'],
+        //         target: `http://${API}:API_PORT`,
+        //         secure: false,
+        //     },
+        // ],
     }
 
     // Enable the plugin to let webpack communicate changes to WDS.
