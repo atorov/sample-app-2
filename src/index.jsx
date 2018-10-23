@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+import $ from 'jquery'
 import { Provider } from 'react-redux'
 
 import xdata from './assets/xdata/sample'
@@ -28,10 +30,18 @@ export const store = configureStore({
     // logger: true && process.env.NODE_ENV === 'development',
 })
 
-ReactDOM.render(
-    <Provider store={store}><App /></Provider>,
-    document.getElementById('app'),
-)
+setTimeout(() => {
+    $('#init-loader-wrapper').css({
+        opacity: 0,
+        zIndex: -999999,
+    })
+    setTimeout(() => $('#init-loader-wrapper').remove(), 5000)
+
+    ReactDOM.render(
+        <Provider store={store}><App /></Provider>,
+        document.getElementById('app'),
+    )
+}, 750) // TODO:
 
 // <Provider> does not support changing `store` on the fly.
 // Redux 2.x and React Redux 2.x which no longer hot reload reducers automatically.
