@@ -23,6 +23,7 @@ const DIST = path.resolve(__dirname, 'build/www')
 const NODE_ENV = process.env.NODE_ENV
 const MODE = NODE_ENV !== 'development' ? 'production' : 'development'
 process.env.BABEL_ENV = MODE
+const CFG_ENV = process.env.CFG_ENV || 'prod'
 
 const APP_VERSION = JSON.stringify(pkg.version)
 
@@ -175,6 +176,7 @@ const config = {
             __MODE__: JSON.stringify(MODE),
             'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
             'process.env.BABEL_ENV': JSON.stringify(process.env.BABEL_ENV),
+            'process.env.CFG_ENV': JSON.stringify(CFG_ENV),
         }),
 
         new HtmlWebpackPlugin({

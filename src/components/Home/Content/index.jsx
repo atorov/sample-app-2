@@ -8,28 +8,28 @@ import gdv from '../../../lib/getDeepValue'
 import './style.less'
 
 class Content extends React.Component {
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
 
-        this.init = this.init.bind(this)
-        this.terminate = this.terminate.bind(this)
-    }
+    //     this.init = this.init.bind(this)
+    //     this.terminate = this.terminate.bind(this)
+    // }
 
     componentDidMount() {
-        this.init()
+        // this.init()
     }
 
     componentWillUnmount() {
-        this.terminate()
+        // this.terminate()
     }
 
-    init() {
-        console.log('::: Home/Content.props:', this.props)
-    }
+    // init() {
+    //     console.log('::: Home/Content.props:', this.props)
+    // }
 
-    terminate() {
-        console.log(this)
-    }
+    // terminate() {
+    //     console.log(this)
+    // }
 
     render() {
         gdv()

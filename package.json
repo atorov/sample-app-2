@@ -6,10 +6,10 @@
   "main": "src/index.jsx",
   "scripts": {
     "clean": "rm -rf ./build",
-    "build": "npm run clean && NODE_ENV=production webpack",
-    "build:stats": "npm run clean && NODE_ENV=production webpack --json > stats.json --profile --progress --display-reasons",
-    "serve": "npm run build && serve ./build/www",
-    "start": "nodemon --watch webpack.*.js --exec \"NODE_ENV=development PORT=9080 webpack-dev-server\""
+    "build:prod": "npm run clean && NODE_ENV=production CFG_ENV=prod webpack",
+    "build:prod:stats": "npm run clean && NODE_ENV=production CFG_ENV=prod webpack --json > stats.json --profile --progress --display-reasons",
+    "serve": "npm run build:prod && serve ./build/www",
+    "start": "nodemon --watch webpack.*.js --exec \"NODE_ENV=development CFG_ENV=dev PORT=9080 webpack-dev-server\""
   },
   "author": "atorov",
   "license": "MIT",
