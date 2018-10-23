@@ -34,6 +34,9 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+# Editor files
+*.iml
+
 # Custom
 __storage__
 .DS_Store
