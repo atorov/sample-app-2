@@ -40,8 +40,29 @@
                     }
                 ]
             ]
+        },
+
+        "test": {
+            "plugins": [
+                "@babel/plugin-syntax-dynamic-import"
+            ],
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "useBuiltIns": "entry"
+                    }
+                ],
+                [
+                    "@babel/preset-react",
+                    {
+                        "useBuiltIns": true
+                    }
+                ]
+            ]
         }
     },
+
     "ignore": [
         "__storage__",
         "build",

@@ -12,7 +12,7 @@ module.exports = {
         // 'no-param-reassign': 0,
         'no-underscore-dangle': 0,
         'prefer-template': 0,
-        // 'no-plusplus': 0,
+        'no-plusplus': 0,
         // 'no-unused-expressions': 0,
         // 'no-use-before-define': 0,
         'semi': 0,
@@ -23,6 +23,9 @@ module.exports = {
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
         'react/prefer-stateless-function': 0,
+    },
+    env: {
+        jest: true,
     },
     globals: {
         __APP_VERSION__: true,
