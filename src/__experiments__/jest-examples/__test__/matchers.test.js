@@ -65,29 +65,28 @@ test('but there is a "stop" in Christoph', () => {
 })
 
 // Arrays
-const shoppingList = [
-    'diapers',
-    'kleenex',
-    'trash bags',
-    'paper towels',
-    'beer',
-]
-
 test('the shopping list has beer on it', () => {
+    const shoppingList = [
+        'diapers',
+        'kleenex',
+        'trash bags',
+        'paper towels',
+        'beer',
+    ]
     expect(shoppingList).toContain('beer')
 })
 
 // Exceptions
-function ConfigError(message) {
-    this.message = message
-    this.name = 'ConfigError'
-}
-
-function compileAndroidCode() {
-    throw new ConfigError('you are using the wrong JDK');
-}
-
 test('compiling android goes as expected', () => {
+    function ConfigError(message) {
+        this.message = message
+        this.name = 'ConfigError'
+    }
+
+    function compileAndroidCode() {
+        throw new ConfigError('you are using the wrong JDK');
+    }
+
     expect(compileAndroidCode).toThrow()
     expect(compileAndroidCode).toThrow(ConfigError)
 
