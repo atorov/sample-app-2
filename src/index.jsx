@@ -31,17 +31,14 @@ export const store = configureStore({
 })
 
 setTimeout(() => {
-    $('#init-loader-wrapper').css({
-        opacity: 0,
-        zIndex: -999999,
-    })
-    setTimeout(() => $('#init-loader-wrapper').remove(), 5000)
+    $('#init-loader-wrapper').css({ opacity: 0 })
+    setTimeout(() => $('#init-loader-wrapper').remove(), 900)
 
     ReactDOM.render(
         <Provider store={store}><App /></Provider>,
         document.getElementById('app'),
     )
-}, 750) // TODO:
+}, 250) // TODO:
 
 // <Provider> does not support changing `store` on the fly.
 // Redux 2.x and React Redux 2.x which no longer hot reload reducers automatically.

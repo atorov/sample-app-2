@@ -7,98 +7,50 @@ import { Link } from 'react-router-dom'
 
 import actionCreators from '../../redux/action-creators'
 
-import Content from './Content'
-
 class Home extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            hmrCheck: false,
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
                 <h1>Homepage</h1>
+                <hr />
 
-                <Content {...this.props} />
+                <ul>
+                    <li>
+                        <Link to="/auto-scroll-demo-1">
+                            Auto scroll to top demo
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/sample-worker-demo">
+                            Sample worker demo
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/sample-image-demo">
+                            Sample image demo
+                        </Link>
+                    </li>
+                </ul>
+                <hr />
+
+                <input
+                    name="hmr-check"
+                    type="checkbox"
+                    checked={this.state.hmrCheck}
+                    onChange={() => this.setState(prevState => ({ hmrCheck: !prevState.hmrCheck }))}
+                />
+                <span>This checkbox approves that we can keep the state during HRM refreshes</span>
+                <br />
+                <hr />
 
                 <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-
-                <Link to="/page1">Go to Page 1</Link>
             </React.Fragment>
         )
     }

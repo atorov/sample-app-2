@@ -8,17 +8,13 @@ import { hot } from 'react-hot-loader'
 
 
 import actionCreators from '../../redux/action-creators'
-import SampleWorkerDemo from '../../__experiments__/Components/SampleWorkerDemo'
-
-import SampleComponent from '../../__experiments__/Components/SampleComponent'
-import SampleImage from '../../__experiments__/Components/SampleImage'
-import StatelessSampleComponent from '../../__experiments__/Components/StatelessSampleComponent'
 
 import Routes from './Routes'
 
 import './style.less'
 
 class App extends React.Component {
+    // Constructor -------------------------------------------------------------
     constructor(props) {
         super(props)
 
@@ -36,6 +32,7 @@ class App extends React.Component {
         }
     }
 
+    // LC methods --------------------------------------------------------------
     componentDidMount() {
         window.addEventListener('resize', this.onResize);
     }
@@ -56,6 +53,7 @@ class App extends React.Component {
         }
     }
 
+    // Main render -------------------------------------------------------------
     render() {
         // console.log('::: App.props', this.props)
         // console.log('::: App.state', this.state)
@@ -65,40 +63,29 @@ class App extends React.Component {
                 id="app-root"
                 ref={this.refAppRoot()}
             >
-                <hr />
-
-                <SampleWorkerDemo />
-                <hr />
-
-                <StatelessSampleComponent />
-                <hr />
-
-                <SampleComponent />
-                <hr />
-
-                <SampleImage />
-                <hr />
-
                 <div>
-                    Some App component content goes here ...
+                    Some App component content goes here.
+                    <br />
+                    <br />
+                    And it is outside of the routes.
                 </div>
-                <hr />
 
                 <BrowserRouter>
                     <Routes />
                 </BrowserRouter>
-                <hr />
             </div>
         )
     }
 }
 
+// Statics ---------------------------------------------------------------------
 App.propTypes = {
     ui: PropTypes.object.isRequired,
 
     ui_SetAppWidth: PropTypes.func.isRequired,
 }
 
+// Export ----------------------------------------------------------------------
 const mapStateToProps = (state, ownProps) => ({
     ...state,
     ...ownProps,

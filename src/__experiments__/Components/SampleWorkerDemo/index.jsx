@@ -1,14 +1,26 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom'
+
 import SampleWorker from '../../../workers/sample.worker'
 
-export default class extends React.Component {
+export default class SampleWorkerDemo extends React.Component {
+    constructor() {
+        super()
+        this.onClick = this.onClick.bind(this)
+    }
+
     componentDidMount() {
         this.initialize()
     }
 
     componentWillUnmount() {
         this.terminate()
+    }
+
+    onClick() {
+        console.log('::: Ping sent and now waiting...')
+        this.sampleWorker.postMessage({ message: 'Ping!' })
     }
 
     initialize() {
@@ -27,15 +39,21 @@ export default class extends React.Component {
     render() {
         return (
             <div>
+                <h1>Sample worker demo</h1>
+                <hr />
+
                 <button
                     type="button"
-                    onClick={() => {
-                        console.log('::: Ping sent and now waiting...')
-                        this.sampleWorker.postMessage({ message: 'Ping!' })
-                    }}
+                    onClick={this.onClick}
                 >
                     Sample Web Worker: Send a Ping!
                 </button>
+                <hr />
+
+                <Link to="/home">Back to homepage</Link>
+                <hr />
+
+                <br />
             </div>
         )
     }

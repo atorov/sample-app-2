@@ -1,15 +1,15 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom'
+
 import IdeaSvg from '../../../assets/img/idea.svg'
 
-export default class App extends React.Component {
+export default class SampleImageDemo extends React.Component {
     render() {
         return (
             <div>
-                <span>
-                    Here we have an image ...
-                </span>
-                <br />
+                <h1>Sample image demo</h1>
+                <hr />
 
                 <img
                     src={IdeaSvg}
@@ -17,6 +17,12 @@ export default class App extends React.Component {
                     width="100px"
                     height="100px"
                 />
+                <hr />
+
+                <Link to="/home">Back to homepage</Link>
+                <hr />
+
+                <br />
             </div>
         )
     }

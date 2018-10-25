@@ -9,8 +9,14 @@ import {
     withRouter,
 } from 'react-router-dom'
 
+import {
+    Page1 as AutoScrollToTopPage1,
+    Page2 as AutoScrollToTopPage2,
+} from '../../__experiments__/Components/AutoScrollToTopDemo'
+import SampleImageDemo from '../../__experiments__/Components/SampleImageDemo'
+import SampleWorkerDemo from '../../__experiments__/Components/SampleWorkerDemo'
+
 import Home from '../Home'
-import Page1 from '../Page1'
 
 import './style.less'
 
@@ -27,8 +33,14 @@ class Routes extends React.Component {
         return (
             <div id="app-routes">
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/page1" component={Page1} />
+                    <Route exact path="/home" component={Home} />
+
+                    <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
+                    <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
+                    <Route exact path="/sample-image-demo" component={SampleImageDemo} />
+                    <Route exact path="/sample-worker-demo" component={SampleWorkerDemo} />
+
+                    <Redirect path="/" to="/home" />
                     <Redirect to="/" />
                 </Switch>
             </div>
