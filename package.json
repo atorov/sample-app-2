@@ -1,8 +1,21 @@
 {
   "name": "sample-app-2",
-  "version": "0.2.1",
-  "description": "",
-  "repository": "",
+  "version": "0.2.2",
+  "private": true,
+  "description": "Just a sample app, version 2",
+  "keywords": [
+    "react",
+    "reactjs",
+    "sample",
+    "boilerplate"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atorov/sample-app-2.git"
+  },
+  "bugs": "https://github.com/atorov/sample-app-2.git/issues",
+  "author": "atorov",
+  "license": "MIT",
   "main": "src/index.jsx",
   "scripts": {
     "clean": "rm -rf ./build",
@@ -12,8 +25,6 @@
     "start": "nodemon --watch webpack.*.js --exec \"NODE_ENV=development CFG_ENV=dev PORT=9080 webpack-dev-server\"",
     "test:watch": "jest --watch"
   },
-  "author": "atorov",
-  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
