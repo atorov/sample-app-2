@@ -33,14 +33,13 @@ class Routes extends React.Component {
         return (
             <div id="app-routes">
                 <Switch>
-                    <Route exact path="/home" component={Home} />
+                    <Route exact path="/" component={Home} />
 
                     <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
                     <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
                     <Route exact path="/sample-image-demo" component={SampleImageDemo} />
                     <Route exact path="/sample-worker-demo" component={SampleWorkerDemo} />
 
-                    <Redirect path="/" to="/home" />
                     <Redirect to="/" />
                 </Switch>
             </div>

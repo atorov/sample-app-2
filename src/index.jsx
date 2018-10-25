@@ -19,7 +19,7 @@ console.log('::: process.env.NODE_ENV (NODE_ENV):', process.env.NODE_ENV)
 console.log('::: process.env.BABEL_ENV:', process.env.BABEL_ENV)
 console.log('::: process.env.CFG_ENV:', process.env.CFG_ENV)
 console.log('::: module.hot:', !!module.hot)
-console.log('::: sample.json', xdata)
+console.log('::: sample.json (static asset):', xdata)
 console.log('::: ::: :::')
 
 export const store = configureStore({
