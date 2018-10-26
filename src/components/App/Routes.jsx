@@ -17,7 +17,12 @@ import {
 import SampleImageDemo from '../../__experiments__/components/SampleImageDemo'
 import SampleWorkerDemo from '../../__experiments__/components/SampleWorkerDemo'
 
-import Compare from '../Compare'
+import CompareBmi from '../Compare/Bmi'
+import CompareHeaderL1 from '../Compare/HeaderL1'
+import CompareHeaderL2 from '../Compare/HeaderL2'
+import CompareHeight from '../Compare/Height'
+import CompareHome from '../Compare/Home'
+import CompareWeight from '../Compare/Weight'
 
 import './style.less'
 
@@ -34,15 +39,23 @@ class Routes extends React.Component {
         return (
             // <div id="app-routes">
             <React.Fragment>
+                <CompareHeaderL1 />
+                <CompareHeaderL2 />
                 <Switch>
-                    <Route exact path="/" component={Compare} />
+                    {/* Compare -------------------------------------------- */}
+                    <Route exact path="/" component={CompareHome} />
+                    <Route exact path="/compare/height" component={CompareHeight} />
+                    <Route exact path="/compare/weight" component={CompareWeight} />
+                    <Route exact path="/compare/bmi" component={CompareBmi} />
 
+                    {/* Experiments ---------------------------------------- */}
                     <Route exact path="/home-hidden" component={HomeHidden} />
                     <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
                     <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
                     <Route exact path="/sample-image-demo" component={SampleImageDemo} />
                     <Route exact path="/sample-worker-demo" component={SampleWorkerDemo} />
 
+                    {/* Misc ----------------------------------------------- */}
                     <Redirect to="/" />
                 </Switch>
             </React.Fragment>

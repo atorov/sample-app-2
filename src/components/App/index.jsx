@@ -13,10 +13,6 @@ import actionCreators from '../../redux/action-creators'
 // import AppHeader from '../../__experiments__/components/AppHeader'
 // import AppFooter from '../../__experiments__/components/AppFooter'
 
-import CompareFooter from '../Compare/Footer'
-import CompareHeader from '../Compare/Header'
-
-
 import Routes from './Routes'
 
 import './style.less'
@@ -74,11 +70,9 @@ class App extends React.Component {
         // <AppHeader />
             <React.Fragment>
                 <CssBaseline />
-                <CompareHeader />
                 <BrowserRouter>
                     <Routes />
                 </BrowserRouter>
-                <CompareFooter />
             </React.Fragment>
         // <AppFooter />
             // </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import SampleWorker from '../../../workers/sample.worker'
+import SampleWorker from '../../workers/sample.worker'
 
 export default class SampleWorkerDemo extends React.Component {
     constructor() {
