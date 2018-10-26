@@ -9,6 +9,7 @@ import {
     withRouter,
 } from 'react-router-dom'
 
+import HomeHidden from '../../__experiments__/components/HomeHidden'
 import {
     Page1 as AutoScrollToTopPage1,
     Page2 as AutoScrollToTopPage2,
@@ -16,8 +17,7 @@ import {
 import SampleImageDemo from '../../__experiments__/components/SampleImageDemo'
 import SampleWorkerDemo from '../../__experiments__/components/SampleWorkerDemo'
 
-import Home from '../Home'
-import HomeHidden from '../../__experiments__/components/HomeHidden'
+import Compare from '../Compare'
 
 import './style.less'
 
@@ -32,9 +32,10 @@ class Routes extends React.Component {
 
     render() {
         return (
-            <div id="app-routes">
+            // <div id="app-routes">
+            <React.Fragment>
                 <Switch>
-                    <Route exact path="/" component={Home} />
+                    <Route exact path="/" component={Compare} />
 
                     <Route exact path="/home-hidden" component={HomeHidden} />
                     <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
@@ -44,7 +45,8 @@ class Routes extends React.Component {
 
                     <Redirect to="/" />
                 </Switch>
-            </div>
+            </React.Fragment>
+            // </div>
         )
     }
 }

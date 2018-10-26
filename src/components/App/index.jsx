@@ -13,6 +13,10 @@ import actionCreators from '../../redux/action-creators'
 // import AppHeader from '../../__experiments__/components/AppHeader'
 // import AppFooter from '../../__experiments__/components/AppFooter'
 
+import CompareFooter from '../Compare/Footer'
+import CompareHeader from '../Compare/Header'
+
+
 import Routes from './Routes'
 
 import './style.less'
@@ -63,20 +67,21 @@ class App extends React.Component {
         // console.log('::: App.state', this.state)
 
         return (
-            <div
-                id="app-root"
-                ref={this.refAppRoot()}
-            >
+            // <div
+            //     id="app-root"
+            //     ref={this.refAppRoot()}
+            // >
+        // <AppHeader />
+            <React.Fragment>
                 <CssBaseline />
-
-                {/* <AppHeader /> */}
-
+                <CompareHeader />
                 <BrowserRouter>
                     <Routes />
                 </BrowserRouter>
-
-                {/* <AppFooter /> */}
-            </div>
+                <CompareFooter />
+            </React.Fragment>
+        // <AppFooter />
+            // </div>
         )
     }
 }
