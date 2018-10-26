@@ -12,12 +12,12 @@ import {
 import {
     Page1 as AutoScrollToTopPage1,
     Page2 as AutoScrollToTopPage2,
-} from '../../__experiments__/Components/AutoScrollToTopDemo'
-import SampleImageDemo from '../../__experiments__/Components/SampleImageDemo'
-import SampleWorkerDemo from '../../__experiments__/Components/SampleWorkerDemo'
+} from '../../__experiments__/components/AutoScrollToTopDemo'
+import SampleImageDemo from '../../__experiments__/components/SampleImageDemo'
+import SampleWorkerDemo from '../../__experiments__/components/SampleWorkerDemo'
 
 import Home from '../Home'
-import HomeHidden from '../../__experiments__/Components/HomeHidden'
+import HomeHidden from '../../__experiments__/components/HomeHidden'
 
 import './style.less'
 

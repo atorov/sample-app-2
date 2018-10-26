@@ -10,8 +10,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 import actionCreators from '../../redux/action-creators'
 
-// import AppHeader from '../../__experiments__/Components/AppHeader'
-// import AppFooter from '../../__experiments__/Components/AppFooter'
+// import AppHeader from '../../__experiments__/components/AppHeader'
+// import AppFooter from '../../__experiments__/components/AppFooter'
 
 import Routes from './Routes'
 
