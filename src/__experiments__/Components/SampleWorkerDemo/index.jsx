@@ -38,7 +38,7 @@ export default class SampleWorkerDemo extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>Sample worker demo</h1>
                 <hr />
 

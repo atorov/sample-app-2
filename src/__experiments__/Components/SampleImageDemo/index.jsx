@@ -7,7 +7,7 @@ import IdeaSvg from '../../../assets/img/idea.svg'
 export default class SampleImageDemo extends React.Component {
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>Sample image demo</h1>
                 <hr />
 

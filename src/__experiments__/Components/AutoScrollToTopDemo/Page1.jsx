@@ -15,7 +15,7 @@ export default class Page1 extends React.Component {
         }
 
         return (
-            <div>
+            <div className="container">
                 <h1>Auto Scroll Page 1</h1>
                 <hr />
 
