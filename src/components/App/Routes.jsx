@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
-import $ from 'jquery'
+// import $ from 'jquery'
 import {
     Redirect,
     Route,
@@ -17,16 +17,17 @@ import SampleImageDemo from '../../__experiments__/Components/SampleImageDemo'
 import SampleWorkerDemo from '../../__experiments__/Components/SampleWorkerDemo'
 
 import Home from '../Home'
+import HomeHidden from '../../__experiments__/Components/HomeHidden'
 
 import './style.less'
 
 class Routes extends React.Component {
     componentDidMount() {
-        this.unlisten = this.props.history.listen(() => $('#app-routes').scrollTop(0))
+        // this.unlisten = this.props.history.listen(() => $('#app-routes').scrollTop(0))
     }
 
     componentWillUnmount() {
-        this.unlisten()
+        // this.unlisten()
     }
 
     render() {
@@ -35,6 +36,7 @@ class Routes extends React.Component {
                 <Switch>
                     <Route exact path="/" component={Home} />
 
+                    <Route exact path="/home-hidden" component={HomeHidden} />
                     <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
                     <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
                     <Route exact path="/sample-image-demo" component={SampleImageDemo} />
@@ -48,7 +50,7 @@ class Routes extends React.Component {
 }
 
 Routes.propTypes = {
-    history: PropTypes.object.isRequired,
+    // history: PropTypes.object.isRequired,
 }
 
 export default withRouter(Routes)

@@ -6,11 +6,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { hot } from 'react-hot-loader'
 
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import actionCreators from '../../redux/action-creators'
 
-import AppHeader from './Header'
-import AppFooter from './Footer'
+// import AppHeader from './Header'
+// import AppFooter from './Footer'
 import Routes from './Routes'
 
 import './style.less'
@@ -65,13 +66,15 @@ class App extends React.Component {
                 id="app-root"
                 ref={this.refAppRoot()}
             >
-                <AppHeader />
+                <CssBaseline />
+
+                {/* <AppHeader /> */}
 
                 <BrowserRouter>
                     <Routes />
                 </BrowserRouter>
 
-                <AppFooter />
+                {/* <AppFooter /> */}
             </div>
         )
     }
