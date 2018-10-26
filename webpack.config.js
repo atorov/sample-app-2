@@ -53,7 +53,9 @@ const config = {
 
         // `publicPath` gives control over the resulting urls you see at index.html for instance.
         // If you are hosting your assets on a CDN, this would be the place to tweak.
-        // publicPath: '/',
+        // Set its value to support deep path refreshes by the devServer.
+        // devServer.historyApiFallback also must be set to `true`.
+        publicPath: '/',
     },
 
     performance: {
@@ -310,7 +312,7 @@ if (MODE === 'development') {
             ignored: EXCLUDE_DEFAULT,
 
             // The bundled files will be available in the browser under this path.
-            // Imagine that the server is running under http://localhost:080
+            // Imagine that the server is running under http://localhost:8080
             // and output.filename is set to bundle.js.
             // By default the publicPath is "/",
             // so your bundle is available as http://localhost:8080/bundle.js.
@@ -318,7 +320,7 @@ if (MODE === 'development') {
             // Make sure publicPath always starts and ends with a forward slash.
             // It is also possible to use a full URL.This is necessary for Hot Module Replacement.
             // It is recommended that devServer.publicPath is the same as output.publicPath.
-            // publicPath: "/",
+            // publicPath: '/',
         },
 
         // proxy: [
