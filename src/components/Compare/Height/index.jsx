@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { Grid } from '@material-ui/core'
 
@@ -8,9 +7,6 @@ import PanelRight from './PanelRight'
 
 class Height extends React.Component {
     render() {
-        const { classes } = this.props
-        console.log(':::', classes)
-
         return (
             <div className="container">
                 <Grid container>
@@ -38,10 +34,6 @@ class Height extends React.Component {
             </div>
         )
     }
-}
-
-Height.propTypes = {
-    classes: PropTypes.object.isRequired,
 }
 
 export default Height
