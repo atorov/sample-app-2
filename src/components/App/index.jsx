@@ -8,7 +8,7 @@ import { hot } from 'react-hot-loader'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-import actionCreators from '../../redux/action-creators'
+import * as actionCreators from '../../redux/action-creators'
 
 // import AppHeader from '../../__experiments__/components/AppHeader'
 // import AppFooter from '../../__experiments__/components/AppFooter'
@@ -38,11 +38,15 @@ class App extends React.Component {
 
     // LC methods --------------------------------------------------------------
     componentDidMount() {
-        window.addEventListener('resize', this.onResize);
+        window.addEventListener('resize', this.onResize)
+
+        console.log('::: Start loading xsettings...')
+        this.props.config_LoadXsettings()
+            .then(() => console.log('::: Loaded xsettings:', this.props.config.xsettings))
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.onResize);
+        window.removeEventListener('resize', this.onResize)
     }
 
     // Event handlers ----------------------------------------------------------
@@ -63,37 +67,43 @@ class App extends React.Component {
         // console.log('::: App.state', this.state)
 
         return (
-            // <div
-            //     id="app-root"
-            //     ref={this.refAppRoot()}
-            // >
-        // <AppHeader />
-            <React.Fragment>
-                <CssBaseline />
-                <BrowserRouter>
-                    <Routes />
-                </BrowserRouter>
-            </React.Fragment>
-        // <AppFooter />
-            // </div>
+            <div
+                id="app-root"
+                ref={this.refAppRoot()}
+            >
+                {/* <AppHeader /> */}
+                <React.Fragment>
+                    <CssBaseline />
+                    <BrowserRouter>
+                        <Routes />
+                    </BrowserRouter>
+                </React.Fragment>
+                {/* <AppFooter /> */}
+            </div>
         )
     }
 }
 
 // Statics ---------------------------------------------------------------------
 App.propTypes = {
+    config: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
 
     ui_SetAppWidth: PropTypes.func.isRequired,
+    config_LoadXsettings: PropTypes.func.isRequired,
 }
 
 // Export ----------------------------------------------------------------------
+// TODO: Refactor it to not take the whole app state!
 const mapStateToProps = (state, ownProps) => ({
     ...state,
     ...ownProps,
 })
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { ...actionCreators },
+    {
+        ...actionCreators,
+        dispatch,
+    },
     dispatch,
 )
 
