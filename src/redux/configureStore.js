@@ -9,10 +9,10 @@ import {
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 
-import config from './reducers/config'
-import ui from './reducers/ui'
+import * as persistState from './persist-state'
+import * as reducers from './reducers'
 
-import persistState from './persist-state'
+import { isInDevMode } from '../lib/mode-helpers'
 
 function filterState(
     state = {},
@@ -38,27 +38,27 @@ function filterState(
 }
 
 export default function (cfg = {}) {
-    const reducers = combineReducers({
-        config,
-        ui,
-    })
+    const combinedReducers = combineReducers(reducers)
 
     let persistedState = {}
     if (cfg.persist) {
         persistedState = persistState.loadState()
-        if (process.env.NODE_ENV === 'development') {
+        if (isInDevMode()) {
             console.log('::: persistedState:', persistedState)
         }
     }
 
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    let composeEnhancers = compose
+    if (isInDevMode() && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+        composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    }
     const middlewares = [thunk]
     if (cfg.logger) {
         middlewares.push(createLogger())
     }
 
     const store = createStore(
-        reducers,
+        combinedReducers,
         persistedState,
         composeEnhancers(applyMiddleware(...middlewares)),
     )
