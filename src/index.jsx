@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 
 import $ from 'jquery'
 import { Provider } from 'react-redux'
@@ -34,7 +34,7 @@ setTimeout(() => {
     $('#init-loader-wrapper').css({ opacity: 0 })
     setTimeout(() => $('#init-loader-wrapper').remove(), 900)
 
-    ReactDOM.render(
+    render(
         <Provider store={store}><App /></Provider>,
         document.getElementById('app'),
     )

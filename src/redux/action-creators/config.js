@@ -15,9 +15,9 @@ const XSETTINGS_SOURCE = '/xsettings/xsettings.json'
 export function config_LoadXsettings() {
     return (dispatch) => {
         dispatch({
-            type: 'types.CONFIG_SET_XSETTINGS',
+            type: types.CONFIG_SET_XSETTINGS,
             payload: {
-                status: 'loading',
+                status: ':LOADING:',
                 data: initState.xsettings.data,
             },
         })
@@ -25,7 +25,7 @@ export function config_LoadXsettings() {
             .then(res => dispatch({
                 type: types.CONFIG_SET_XSETTINGS,
                 payload: {
-                    status: 'ready',
+                    status: ':READY:',
                     data: gdv(res, 'data', {}),
                 },
             }))
@@ -34,7 +34,7 @@ export function config_LoadXsettings() {
                 dispatch({
                     type: types.CONFIG_SET_XSETTINGS,
                     payload: {
-                        status: 'error',
+                        status: ':ERROR:',
                         data: initState.xsettings.data,
                     },
                 });

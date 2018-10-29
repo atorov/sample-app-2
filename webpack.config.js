@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const Autoprefixer = require('autoprefixer')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Jarvis = require('webpack-jarvis')
+// const Jarvis = require('webpack-jarvis')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const pkg = require('./package.json')
@@ -196,7 +196,7 @@ const config = {
         // from your webpack build whether in dev or in prod.
         // In your browser open:
         // localhost:1337
-        new Jarvis(),
+        // new Jarvis(),
 
         new CopyWebpackPlugin(
             [

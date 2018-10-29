@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 // import $ from 'jquery'
 import {
@@ -8,6 +8,8 @@ import {
     Switch,
     withRouter,
 } from 'react-router-dom'
+
+import LinearProgress from '@material-ui/core/LinearProgress'
 
 import HomeHidden from '../../__experiments__/components/HomeHidden'
 import {
@@ -41,23 +43,25 @@ class Routes extends React.Component {
             <React.Fragment>
                 <CompareHeaderL1 />
                 <CompareHeaderL2 />
-                <Switch>
-                    {/* Compare -------------------------------------------- */}
-                    <Route exact path="/" component={CompareHome} />
-                    <Route exact path="/compare/height" component={CompareHeight} />
-                    <Route exact path="/compare/weight" component={CompareWeight} />
-                    <Route exact path="/compare/bmi" component={CompareBmi} />
+                {this.props.app.initializer.status === ':READY:' ? (
+                    <Switch>
+                        {/* Compare -------------------------------------------- */}
+                        <Route exact path="/" component={CompareHome} />
+                        <Route exact path="/compare/height" component={CompareHeight} />
+                        <Route exact path="/compare/weight" component={CompareWeight} />
+                        <Route exact path="/compare/bmi" component={CompareBmi} />
 
-                    {/* Experiments ---------------------------------------- */}
-                    <Route exact path="/home-hidden" component={HomeHidden} />
-                    <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
-                    <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
-                    <Route exact path="/sample-image-demo" component={SampleImageDemo} />
-                    <Route exact path="/sample-worker-demo" component={SampleWorkerDemo} />
+                        {/* Experiments ---------------------------------------- */}
+                        <Route exact path="/home-hidden" component={HomeHidden} />
+                        <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
+                        <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
+                        <Route exact path="/sample-image-demo" component={SampleImageDemo} />
+                        <Route exact path="/sample-worker-demo" component={SampleWorkerDemo} />
 
-                    {/* Misc ----------------------------------------------- */}
-                    <Redirect to="/" />
-                </Switch>
+                        {/* Misc ----------------------------------------------- */}
+                        <Redirect to="/" />
+                    </Switch>) : <LinearProgress />
+                }
             </React.Fragment>
             // </div>
         )
@@ -65,6 +69,7 @@ class Routes extends React.Component {
 }
 
 Routes.propTypes = {
+    app: PropTypes.object.isRequired,
     // history: PropTypes.object.isRequired,
 }
 
