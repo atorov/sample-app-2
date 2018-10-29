@@ -210,7 +210,11 @@ const config = {
                 },
                 {
                     from: SRC + '/assets/xsettings',
-                    to: path.resolve(DIST, '../xsettings'),
+                    to: path.resolve(DIST, 'xsettings'),
+                },
+                {
+                    from: SRC + '/assets/xsettings-hidden',
+                    to: path.resolve(DIST, '../xsettings-hidden'),
                 },
             ],
             {
