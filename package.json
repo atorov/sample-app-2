@@ -1,6 +1,6 @@
 {
   "name": "sample-app-2",
-  "version": "0.2.3-snapshot",
+  "version": "0.2.3",
   "private": true,
   "description": "Just a sample app, version 2",
   "keywords": [
