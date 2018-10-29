@@ -1,22 +1,17 @@
-import {
-    UI_SET,
-} from './types'
+import * as types from './types'
 
-function ui_Set(payload) {
+// export function ui_Set(payload) {
+//     return {
+//         type: types.UI_SET,
+//         payload,
+//     };
+// }
+
+export function ui_SetAppWidth(payload) {
     return {
-        type: UI_SET,
+        type: types.UI_SET,
         payload,
     };
 }
 
-function ui_SetAppWidth(payload) {
-    return {
-        type: UI_SET,
-        payload,
-    };
-}
-
-export default {
-    ui_Set,
-    ui_SetAppWidth,
-}
+export default null

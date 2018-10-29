@@ -1,4 +1,6 @@
-function loadState() {
+import { isInDevMode } from '../lib/mode-helpers'
+
+export function loadState() {
     try {
         const serialized = window.sessionStorage.getItem('reduxState')
         if (serialized === null) {
@@ -14,13 +16,13 @@ function loadState() {
     }
 }
 
-function saveState(state) {
+export function saveState(state) {
     try {
         // Redux state should always be serializable
         const serialized = JSON.stringify(state)
         window.sessionStorage.setItem('reduxState', serialized)
     } catch (reason) {
-        if (process.env.NODE_ENV === 'development') {
+        if (isInDevMode()) {
             console.error(
                 '::: savePersistedState() in sessionStorage failed with reason:',
                 reason,
@@ -29,7 +31,4 @@ function saveState(state) {
     }
 }
 
-export default {
-    loadState,
-    saveState,
-}
+export default null

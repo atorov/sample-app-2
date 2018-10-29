@@ -3,7 +3,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import actionCreators from '../../redux/action-creators'
+import * as actionCreators from '../../redux/action-creators'
 
 class Weight extends React.Component {
     render() {

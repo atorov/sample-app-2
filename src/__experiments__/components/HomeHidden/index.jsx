@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
-import actionCreators from '../../../redux/action-creators'
+import * as actionCreators from '../../../redux/action-creators'
 
 class HomeHidden extends React.Component {
     constructor(props) {

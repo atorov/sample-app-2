@@ -1,7 +1,2 @@
-import config from './config'
-import ui from './ui'
-
-export default {
-    ...config,
-    ...ui,
-}
+export * from './config'
+export * from './ui'

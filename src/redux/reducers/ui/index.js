@@ -1,12 +1,10 @@
-import {
-    UI_SET,
-} from '../../action-creators/types'
+import * as types from '../../action-creators/types'
 
 import initState from './initState'
 
 export default function (state = initState, action) {
     switch (action.type) {
-        case UI_SET:
+        case types.UI_SET:
             return ({
                 ...state,
                 ...action.payload,

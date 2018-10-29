@@ -5,12 +5,12 @@ import $ from 'jquery'
 import { Provider } from 'react-redux'
 
 import xdata from './assets/xdata/sample'
+// import { isInDevMode } from './lib/mode-helpers'
+import configureStore from './redux/configureStore'
 
 import App from './components/App'
 
 import './__experiments__'
-
-import configureStore from './redux/configureStore'
 
 console.log('::: ::: :::')
 console.log('::: __APP_VERSION__:', __APP_VERSION__)
@@ -27,7 +27,7 @@ export const store = configureStore({
     // include: [],
     // exclude: [],
     // throttle: 550,
-    // logger: true && process.env.NODE_ENV === 'development',
+    // logger: true && isInDevMode(),
 })
 
 setTimeout(() => {
