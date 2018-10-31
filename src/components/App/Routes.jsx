@@ -20,7 +20,6 @@ import SampleImageDemo from '../../__experiments__/components/SampleImageDemo'
 import SampleWorkerDemo from '../../__experiments__/components/SampleWorkerDemo'
 
 import CompareBmi from '../Compare/Bmi'
-import CompareHeaderL1 from '../Compare/HeaderL1'
 import CompareHeaderL2 from '../Compare/HeaderL2'
 import CompareHeight from '../Compare/Height'
 import CompareHome from '../Compare/Home'
@@ -41,7 +40,7 @@ class Routes extends React.Component {
         return (
             // <div id="app-routes">
             <React.Fragment>
-                <CompareHeaderL1 />
+
                 <CompareHeaderL2 />
                 {this.props.app.initializer.status === ':READY:' ? (
                     <Switch>

@@ -13,6 +13,8 @@ import * as actionCreators from '../../redux/action-creators'
 // import AppHeader from '../../__experiments__/components/AppHeader'
 // import AppFooter from '../../__experiments__/components/AppFooter'
 
+import HeaderL1 from '../HeaderL1'
+
 import Initializer from './Initializer'
 import Routes from './Routes'
 
@@ -74,6 +76,7 @@ class App extends Component {
                     {/* <AppHeader /> */}
                     <React.Fragment>
                         <CssBaseline />
+                        <HeaderL1 />
                         <BrowserRouter>
                             <Routes app={this.props.app} />
                         </BrowserRouter>
