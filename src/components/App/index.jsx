@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { bindActionCreators } from 'redux'
-import { BrowserRouter } from 'react-router-dom'
+import BrowserRouter from 'react-router-dom/BrowserRouter'
 import { connect } from 'react-redux'
 import { hot } from 'react-hot-loader'
+import { bindActionCreators } from 'redux'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 

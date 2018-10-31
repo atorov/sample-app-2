@@ -5,7 +5,7 @@ import $ from 'jquery'
 import { Provider } from 'react-redux'
 
 import xdata from './assets/xdata/sample'
-// import { isInDevMode } from './lib/mode-helpers'
+// import { isInDevMode } from './lib/mode-helpers/'
 import configureStore from './redux/configureStore'
 
 import App from './components/App'

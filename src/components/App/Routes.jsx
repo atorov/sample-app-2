@@ -19,11 +19,12 @@ import {
 import SampleImageDemo from '../../__experiments__/components/SampleImageDemo'
 import SampleWorkerDemo from '../../__experiments__/components/SampleWorkerDemo'
 
-import CompareBmi from '../Compare/Bmi'
-import CompareHeaderL2 from '../Compare/HeaderL2'
-import CompareHeight from '../Compare/Height'
-import CompareHome from '../Compare/Home'
-import CompareWeight from '../Compare/Weight'
+// import CompareBmi from '../Compare/Bmi'
+// import CompareHeight from '../Compare/Height'
+// import CompareWeight from '../Compare/Weight'
+
+import Home from '../Home'
+import HeaderL2 from '../HeaderL2'
 
 import './style.less'
 
@@ -40,15 +41,16 @@ class Routes extends React.Component {
         return (
             // <div id="app-routes">
             <React.Fragment>
+                <HeaderL2 />
 
-                <CompareHeaderL2 />
                 {this.props.app.initializer.status === ':READY:' ? (
                     <Switch>
-                        {/* Compare -------------------------------------------- */}
-                        <Route exact path="/" component={CompareHome} />
-                        <Route exact path="/compare/height" component={CompareHeight} />
+                        <Route exact path="/" component={Home} />
+
+                        {/* App -------------------------------------------- */}
+                        {/* <Route exact path="/compare/height" component={CompareHeight} />
                         <Route exact path="/compare/weight" component={CompareWeight} />
-                        <Route exact path="/compare/bmi" component={CompareBmi} />
+                        <Route exact path="/compare/bmi" component={CompareBmi} /> */}
 
                         {/* Experiments ---------------------------------------- */}
                         <Route exact path="/home-hidden" component={HomeHidden} />
