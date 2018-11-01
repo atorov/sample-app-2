@@ -40,7 +40,10 @@ class Routes extends Component {
         return (
             <div
                 id="app-routes"
-                style={{ marginTop: '144px' }}
+                style={{
+                    marginTop: '144px',
+                    marginBottom: '48px',
+                }}
             >
                 <HeaderL2 />
 
