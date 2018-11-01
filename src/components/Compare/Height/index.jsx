@@ -1,11 +1,11 @@
-import React from 'react'
+, { Component } import React from 'react'
 
 import { Grid } from '@material-ui/core'
 
 import PanelLeft from './PanelLeft'
 import PanelRight from './PanelRight'
 
-class Height extends React.Component {
+class Height extends Component {
     render() {
         return (
             <div className="container">

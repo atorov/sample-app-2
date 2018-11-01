@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
 
-export default class Page2 extends React.Component {
+export default class Page2 extends Component {
     render() {
         const brs = []
         for (let i = 0; i < 100; i++) {

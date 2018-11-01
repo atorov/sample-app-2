@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography'
 // import ImgSmall from '../../assets/img/small.png'
 
 const Content = ({ classes }) => (
+    // throw new Error('An synthetic error') // Should be catch by ErrorBoundary
     <ExpansionPanelDetails>
         <Typography>
             The
@@ -16,6 +17,7 @@ const Content = ({ classes }) => (
         </Typography>
     </ExpansionPanelDetails>
 )
+
 
 Content.propTypes = {
     classes: PropTypes.object.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 import * as actionCreators from '../../../redux/action-creators'
 
-class HomeHidden extends React.Component {
+class HomeHidden extends Component {
     constructor(props) {
         super(props)
         this.state = {

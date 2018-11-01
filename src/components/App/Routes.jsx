@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 // import $ from 'jquery'
@@ -27,7 +27,7 @@ import HeaderL2 from '../HeaderL2'
 
 import './style.less'
 
-class Routes extends React.Component {
+class Routes extends Component {
     componentDidMount() {
         // this.unlisten = this.props.history.listen(() => $('#app-routes').scrollTop(0))
     }

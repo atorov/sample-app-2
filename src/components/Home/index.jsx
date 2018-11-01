@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
@@ -11,7 +11,7 @@ import * as actionCreators from '../../redux/action-creators'
 import About from './About'
 import ReactLazyDemo from './ReactLazyDemo'
 
-class Home extends React.Component {
+class Home extends Component {
     constructor(props) {
         super(props)
 

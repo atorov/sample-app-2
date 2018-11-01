@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
 
 import SampleWorker from '../../workers/sample.worker'
 
-export default class SampleWorkerDemo extends React.Component {
+export default class SampleWorkerDemo extends Component {
     constructor() {
         super()
         this.onClick = this.onClick.bind(this)

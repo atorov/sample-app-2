@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import * as actionCreators from '../../redux/action-creators'
 
-class Weight extends React.Component {
+class Weight extends Component {
     render() {
         return (
             <div className="container">

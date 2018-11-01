@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { bindActionCreators } from 'redux'
@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import * as actionCreators from '../../redux/action-creators'
 
-class Initializer extends React.Component {
+class Initializer extends Component {
     componentDidMount() {
         console.log('::: Initializing the app...')
 
