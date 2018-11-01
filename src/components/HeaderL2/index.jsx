@@ -12,6 +12,7 @@ function onChange(history) {
     return (_, value) => {
         switch (value) {
             case 0: history.push('/app/home'); break
+            case 1: history.push('/app/bmi-calculator'); break
             default: break
         }
     }
@@ -19,7 +20,7 @@ function onChange(history) {
 
 function getTabIndex(history) {
     switch (history.location.pathname) {
-        // case '/app/...': return 1
+        case '/app/bmi-calculator': return 1
         default: return 0;
     }
 }
@@ -31,13 +32,15 @@ const HeaderL2 = ({
     <AppBar
         position="fixed"
         color="default"
-        className={classes.custom}
+        className={classes.customAppBar}
     >
         <Tabs
             value={getTabIndex(history)}
+            className={`container ${classes.customTabs}`}
             onChange={onChange(history)}
         >
             <Tab label="Home" />
+            <Tab label="BMI Calculator" />
         </Tabs>
     </AppBar>
 )
@@ -48,7 +51,10 @@ HeaderL2.propTypes = {
 }
 
 export default withStyles({
-    custom: {
+    customAppBar: {
         top: '48px',
+    },
+    customTabs: {
+        width: '100%',
     },
 })(withRouter(HeaderL2))
