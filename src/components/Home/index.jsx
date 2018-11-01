@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-
 import { withStyles } from '@material-ui/core/styles'
-
-import * as actionCreators from '../../redux/action-creators'
 
 import About from './About'
 import ReactLazyDemo from './ReactLazyDemo'
@@ -53,27 +48,6 @@ Home.propTypes = {
     classes: PropTypes.object.isRequired,
 }
 
-// TODO:
-const mapStateToProps = (
-    state,
-    // {
-    //     app,
-    //     ui,
-    // },
-    ownProps,
-) => ({
-    state,
-    ...ownProps,
-})
-
-const mapDispatchToProps = dispatch => bindActionCreators(
-    { ...actionCreators },
-    // {
-    //     ui_SetAppWidth: actionCreators.ui_SetAppWidth,
-    // },
-    dispatch,
-)
-
 export default withStyles(theme => ({
     panelHeading: {
         fontSize: theme.typography.pxToRem(15),
@@ -86,4 +60,4 @@ export default withStyles(theme => ({
     panelCode: {
         fontSize: theme.typography.pxToRem(22),
     },
-}))(connect(mapStateToProps, mapDispatchToProps)(Home))
+}))(Home)
