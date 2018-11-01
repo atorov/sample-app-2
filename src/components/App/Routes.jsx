@@ -9,6 +9,7 @@ import {
     withRouter,
 } from 'react-router-dom'
 
+import withStyles from '@material-ui/core/styles/withStyles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 import HomeHidden from '../../__experiments__/components/HomeHidden'
@@ -18,10 +19,7 @@ import {
 } from '../../__experiments__/components/AutoScrollToTopDemo'
 import SampleWorkerDemo from '../../__experiments__/components/SampleWorkerDemo'
 
-// import CompareBmi from '../Compare/Bmi'
-// import CompareHeight from '../Compare/Height'
-// import CompareWeight from '../Compare/Weight'
-
+import BmiCalculator from '../BmiCalculator'
 import Home from '../Home'
 import HeaderL2 from '../HeaderL2'
 
@@ -29,21 +27,28 @@ import './style.less'
 
 class Routes extends Component {
     componentDidMount() {
-        // this.unlisten = this.props.history.listen(() => $('#app-routes').scrollTop(0))
+        this.unlisten = this.props.history.listen((/* location, action */) => {
+            // console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
+            // console.log(`The last navigation action was ${action}`)
+
+            // $('html').scrollTop(0)
+            // $('body').scrollTop(0)
+            // $('.app').scrollTop(0)
+            // $('.app-root').scrollTop(0)
+            // $('.app-routes').scrollTop(0)
+            window.scrollTo(0, 0)
+        })
     }
 
     componentWillUnmount() {
-        // this.unlisten()
+        this.unlisten()
     }
 
     render() {
         return (
             <div
                 id="app-routes"
-                style={{
-                    marginTop: '144px',
-                    marginBottom: '48px',
-                }}
+                className={this.props.classes.customAppRoutes}
             >
                 <HeaderL2 />
 
@@ -52,9 +57,7 @@ class Routes extends Component {
                         <Route exact path="/" component={Home} />
 
                         {/* App -------------------------------------------- */}
-                        {/* <Route exact path="/compare/height" component={CompareHeight} />
-                        <Route exact path="/compare/weight" component={CompareWeight} />
-                        <Route exact path="/compare/bmi" component={CompareBmi} /> */}
+                        <Route exact path="/app/bmi-calculator" component={BmiCalculator} />
 
                         {/* Experiments ---------------------------------------- */}
                         <Route exact path="/home-hidden" component={HomeHidden} />
@@ -73,7 +76,13 @@ class Routes extends Component {
 
 Routes.propTypes = {
     app: PropTypes.object.isRequired,
-    // history: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
 }
 
-export default withRouter(Routes)
+export default withStyles({
+    customAppRoutes: {
+        marginTop: '144px',
+        marginBottom: '48px',
+    },
+})(withRouter(Routes))
