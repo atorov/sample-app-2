@@ -25,12 +25,21 @@ const PanelLeft = ({ classes }) => (
                     variant="h5"
                     component="h2"
                 >
-                    Enter Your Height
+                    Enter Your Height and Weight
                 </Typography>
-                <Typography component="p">
-                    Lizards are a widespread group of squamate reptiles,
-                    with over 6,000 species, ranging across all continents
-                    except Antarctica
+                <Typography>
+                    The BMI is universally expressed in kg/m
+                    <sup>2</sup>
+                    ,
+                    resulting from mass in kilograms and height in metres.
+                    If pounds and inches are used,
+                    a conversion factor of 703 (kg/m
+                    <sup>2</sup>
+                    )/(lb/in
+                    <sup>2</sup>
+                    ) must be applied.
+                    When the term BMI is used informally,
+                    the units are usually omitted.
                 </Typography>
             </CardContent>
         </CardActionArea>
