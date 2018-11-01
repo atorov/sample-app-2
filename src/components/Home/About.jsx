@@ -14,7 +14,6 @@ import ImgSmall from '../../assets/img/small.png'
 const About = ({
     classes,
     isExpanded,
-
     handleChange,
 }) => (
     <ExpansionPanel
