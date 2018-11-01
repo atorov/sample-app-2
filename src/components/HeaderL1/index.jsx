@@ -10,9 +10,12 @@ const HeaderL1 = ({ classes }) => (
     <AppBar
         position="fixed"
         color="default"
-        className={classes.custom}
+        className={classes.customAppBar}
     >
-        <Typography variant="h6">
+        <Typography
+            variant="h6"
+            className={`container ${classes.customTitle}`}
+        >
             <span>Sample App 2 / </span>
             <small>{__APP_VERSION__.replace(/"/g, '')}</small>
         </Typography>
@@ -24,8 +27,11 @@ HeaderL1.propTypes = {
 }
 
 export default withStyles({
-    custom: {
+    customAppBar: {
         padding: '8px 16px',
         boxShadow: 'none',
+    },
+    customTitle: {
+        width: '100%',
     },
 })(HeaderL1)
