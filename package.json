@@ -23,7 +23,7 @@
     "build:prod:stats": "npm run clean && NODE_ENV=production CFG_ENV=prod webpack --json > stats.json --profile --progress --display-reasons",
     "serve": "npm run build:prod && serve ./build/www",
     "start": "nodemon --watch webpack.*.js --exec \"NODE_ENV=development CFG_ENV=dev PORT=9080 webpack-dev-server\"",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watchAll"
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
@@ -68,7 +68,7 @@
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
     "uuid": "^3.3.2",
-    "webpack": "^4.23.1",
+    "webpack": "^4.24.0",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-jarvis": "^0.3.2",
