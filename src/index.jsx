@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {
+// StrictMode,
+} from 'react'
 import { render } from 'react-dom'
 
 import $ from 'jquery'
@@ -35,7 +37,11 @@ setTimeout(() => {
     setTimeout(() => $('#init-loader-wrapper').remove(), 900)
 
     render(
-        <Provider store={store}><App /></Provider>,
+        // <StrictMode>
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        // </StrictMode>,
         document.getElementById('app'),
     )
 }, 250) // TODO:

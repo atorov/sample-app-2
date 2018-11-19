@@ -28,6 +28,8 @@ import HeaderL2 from '../../HeaderL2'
 
 import Fallback from './Fallback'
 
+// React.lazy makes Route's proptypes fail #6420
+// https://github.com/ReactTraining/react-router/issues/6420
 const Home = lazy(() => import('../../Home'))
 const BmiCalculator = lazy(() => import('../../BmiCalculator'))
 
