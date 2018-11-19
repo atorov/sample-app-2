@@ -1,6 +1,6 @@
 import React, {
     Component,
-    // lazy,
+    lazy,
     Suspense,
 } from 'react'
 import PropTypes from 'prop-types'
@@ -16,19 +16,20 @@ import {
 import withStyles from '@material-ui/core/styles/withStyles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
-import HomeHidden from '../../__experiments__/components/HomeHidden'
+import HomeHidden from '../../../__experiments__/components/HomeHidden'
 import {
     Page1 as AutoScrollToTopPage1,
     Page2 as AutoScrollToTopPage2,
-} from '../../__experiments__/components/AutoScrollToTopDemo'
-import SampleWorkerDemo from '../../__experiments__/components/SampleWorkerDemo'
+} from '../../../__experiments__/components/AutoScrollToTopDemo'
+import SampleWorkerDemo from '../../../__experiments__/components/SampleWorkerDemo'
 
-import BmiCalculator from '../BmiCalculator'
-import ErrorBoundary from '../ErrorBoundary'
-import Home from '../Home'
-import HeaderL2 from '../HeaderL2'
+import ErrorBoundary from '../../ErrorBoundary'
+import HeaderL2 from '../../HeaderL2'
 
-import './style.less'
+import Fallback from './Fallback'
+
+const Home = lazy(() => import('../../Home'))
+const BmiCalculator = lazy(() => import('../../BmiCalculator'))
 
 class Routes extends Component {
     componentDidMount() {
