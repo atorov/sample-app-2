@@ -216,6 +216,10 @@ const config = {
                     from: SRC + '/assets/xsettings-hidden',
                     to: path.resolve(DIST, '../xsettings-hidden'),
                 },
+                {
+                    from: SRC + '/assets/img/static',
+                    to: path.resolve(DIST, 'img/static'),
+                },
             ],
             {
                 ignore: ['.DS_Store'],
