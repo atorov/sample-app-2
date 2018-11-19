@@ -36,6 +36,7 @@
     "autoprefixer": "^9.3.0",
     "axios": "^0.18.0",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "copy-webpack-plugin": "^4.6.0",
@@ -73,5 +74,6 @@
     "webpack-dev-server": "^3.1.10",
     "webpack-jarvis": "^0.3.2",
     "worker-loader": "^2.0.0"
-  }
+  },
+  "devDependencies": {}
 }

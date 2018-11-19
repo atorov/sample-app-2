@@ -1,5 +1,10 @@
 module.exports = {
     extends: 'airbnb',
+    parser: "babel-eslint",
+    // https://github.com/eslint/eslint#what-about-experimental-features
+    // plugins: [
+    //     "babel"
+    // ],
     rules: {
         'camelcase': 0,
         'prefer-destructuring': 0,
@@ -23,6 +28,8 @@ module.exports = {
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
         'react/prefer-stateless-function': 0,
+
+        // 'babel/allowImportExportEverywhere': 0,
     },
     env: {
         jest: true,

@@ -9,10 +9,10 @@ import ErrorBoundary from '../../../ErrorBoundary'
 
 import Fallback from './Fallback'
 
-const Content = lazy(() => delay(1000).then(() => import('./Content'))) // eslint-disable-line
-const VeryLargeImage = lazy(() => import('./VeryLargeImage')) // eslint-disable-line
+const Content = lazy(() => delay(1000).then(() => import('./Content')))
+const VeryLargeImage = lazy(() => import('./VeryLargeImage'))
 
-const DynamicContent = (props) => (
+const DynamicContent = props => (
     <ErrorBoundary>
         <Suspense fallback={<Fallback />}>
             <Content {...props} />
@@ -23,6 +23,3 @@ const DynamicContent = (props) => (
 )
 
 export default DynamicContent
-
-
-

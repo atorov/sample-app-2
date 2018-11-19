@@ -1,4 +1,8 @@
-import React, { Component } from 'react'
+import React, {
+    Component,
+    // lazy,
+    Suspense,
+} from 'react'
 import PropTypes from 'prop-types'
 
 // import $ from 'jquery'
@@ -20,6 +24,7 @@ import {
 import SampleWorkerDemo from '../../__experiments__/components/SampleWorkerDemo'
 
 import BmiCalculator from '../BmiCalculator'
+import ErrorBoundary from '../ErrorBoundary'
 import Home from '../Home'
 import HeaderL2 from '../HeaderL2'
 
@@ -52,22 +57,29 @@ class Routes extends Component {
             >
                 <HeaderL2 />
 
-                {this.props.app.initializer.status === ':READY:' ? (
-                    <Switch>
-                        <Route exact path="/" component={Home} />
+                {this.props.app.initializer.status === ':READY:'
+                    ? (
+                        <ErrorBoundary>
+                            <Suspense fallback={<Fallback />}>
+                                <Switch>
+                                    <Route exact path="/" component={Home} />
 
-                        {/* App -------------------------------------------- */}
-                        <Route exact path="/app/bmi-calculator" component={BmiCalculator} />
+                                    {/* App -------------------------------------------- */}
+                                    <Route exact path="/app/bmi-calculator" component={BmiCalculator} />
 
-                        {/* Experiments ---------------------------------------- */}
-                        <Route exact path="/home-hidden" component={HomeHidden} />
-                        <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
-                        <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
-                        <Route exact path="/sample-worker-demo" component={SampleWorkerDemo} />
+                                    {/* Experiments ---------------------------------------- */}
+                                    <Route exact path="/home-hidden" component={HomeHidden} />
+                                    <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
+                                    <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
+                                    <Route exact path="/sample-worker-demo" component={SampleWorkerDemo} />
 
-                        {/* Misc ----------------------------------------------- */}
-                        <Redirect to="/" />
-                    </Switch>) : <LinearProgress />
+                                    {/* Misc ----------------------------------------------- */}
+                                    <Redirect to="/" />
+                                </Switch>
+                            </Suspense>
+                        </ErrorBoundary>
+                    )
+                    : <LinearProgress />
                 }
             </div>
         )
