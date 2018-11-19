@@ -19,6 +19,7 @@ const PanelLeft = ({ classes }) => (
                 image="/static/images/cards/contemplative-reptile.jpg"
                 title="Contemplative Reptile"
             /> */}
+
             <CardContent>
                 <Typography
                     gutterBottom
@@ -42,7 +43,17 @@ const PanelLeft = ({ classes }) => (
                     the units are usually omitted.
                 </Typography>
             </CardContent>
+
+            <CardContent>
+                <input
+                    type="range"
+                    min=""
+                    max="100"
+                    value="50"
+                />
+            </CardContent>
         </CardActionArea>
+
         <CardActions>
             <Button size="small" color="secondary">
                 Clear Data

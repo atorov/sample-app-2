@@ -30,6 +30,7 @@ import Fallback from './Fallback'
 
 // React.lazy makes Route's proptypes fail #6420
 // https://github.com/ReactTraining/react-router/issues/6420
+// component = {props => <Component {...props} />}
 const Home = lazy(() => import('../../Home'))
 const BmiCalculator = lazy(() => import('../../BmiCalculator'))
 
@@ -65,10 +66,10 @@ class Routes extends Component {
                         <ErrorBoundary>
                             <Suspense fallback={<Fallback />}>
                                 <Switch>
-                                    <Route exact path="/" component={Home} />
+                                    <Route exact path="/" component={props => <Home {...props} />} />
 
                                     {/* App -------------------------------------------- */}
-                                    <Route exact path="/app/bmi-calculator" component={BmiCalculator} />
+                                    <Route exact path="/app/bmi-calculator" component={props => <BmiCalculator {...props} />} />
 
                                     {/* Experiments ---------------------------------------- */}
                                     <Route exact path="/home-hidden" component={HomeHidden} />
