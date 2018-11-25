@@ -6,17 +6,12 @@ import {
     Typography,
 } from '@material-ui/core'
 
-const Sliders = ({
-    weight,
-    height,
-    onWeightChange,
-    onHeightChange,
-}) => (
+const Sliders = props => (
     <CardContent>
         <Typography variant="subtitle2">
             Weight&nbsp;
             <em>
-                {weight}
+                {props.weight}
             </em>
             &nbsp;kg
         </Typography>
@@ -24,15 +19,15 @@ const Sliders = ({
             type="range"
             min={40}
             max={130}
-            value={weight}
+            value={props.weight}
             style={{ width: '100%' }}
-            onChange={onWeightChange}
+            onChange={props.handleChangeWeight}
         />
 
         <Typography variant="subtitle2">
             Height&nbsp;
             <em>
-                {height}
+                {props.height}
             </em>
             &nbsp;cm
         </Typography>
@@ -40,9 +35,9 @@ const Sliders = ({
             type="range"
             min={140}
             max={220}
-            value={height}
+            value={props.height}
             style={{ width: '100%' }}
-            onChange={onHeightChange}
+            onChange={props.handleChangeHeight}
         />
     </CardContent>
 )
@@ -51,8 +46,8 @@ Sliders.propTypes = {
     height: PropTypes.number.isRequired,
     weight: PropTypes.number.isRequired,
 
-    onHeightChange: PropTypes.func.isRequired,
-    onWeightChange: PropTypes.func.isRequired,
+    handleChangeHeight: PropTypes.func.isRequired,
+    handleChangeWeight: PropTypes.func.isRequired,
 }
 
 export default Sliders

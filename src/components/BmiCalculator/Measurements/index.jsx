@@ -2,37 +2,47 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { withStyles } from '@material-ui/core/styles'
-import {
-    Card,
-    CardActionArea,
-} from '@material-ui/core'
+import { Card } from '@material-ui/core'
 
 import Actions from './Actions'
-import Description from './Description'
 import Media from './Media'
 import Sliders from './Sliders'
+import Title from './Title'
 
-const PanelLeft = (props) => {
+const Measurements = (props) => {
     const classes = props.classes
 
     return (
         <Card className={classes.root}>
-            <CardActionArea>
-                <Media {...props} />
-                <Description />
-                <Sliders {...props} />
-            </CardActionArea>
-
-            <Actions />
+            <Title />
+            <Media />
+            <Sliders
+                height={props.height}
+                weight={props.weight}
+                handleChangeHeight={props.handleChangeHeight}
+                handleChangeWeight={props.handleChangeWeight}
+            />
+            <Actions
+                handleClickCalculateBmi={props.handleClickCalculateBmi}
+                handleClickClearData={props.handleClickClearData}
+            />
         </Card>
     )
 }
 
-PanelLeft.propTypes = {
+Measurements.propTypes = {
     classes: PropTypes.object.isRequired,
+    height: PropTypes.number.isRequired,
+    weight: PropTypes.number.isRequired,
+
+    handleChangeHeight: PropTypes.func.isRequired,
+    handleChangeWeight: PropTypes.func.isRequired,
+    handleClickCalculateBmi: PropTypes.func.isRequired,
+    handleClickClearData: PropTypes.func.isRequired,
 }
 
-export default withStyles({
+const StyledComponent = withStyles({
     root: { margin: '16px 8px' },
-    media: { height: '375px' },
-})(PanelLeft)
+})(Measurements)
+
+export default StyledComponent

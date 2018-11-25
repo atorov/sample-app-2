@@ -52,7 +52,7 @@ const Login = (props) => {
                 className={classes.button}
                 onClick={handleLogin(props.auth_Set)}
             >
-                Primary
+                Login
             </Button>
         </div>
     )
