@@ -110,9 +110,7 @@ const mapStateToProps = (
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    {
-        ui_SetAppWidth: actionCreators.ui_SetAppWidth,
-    },
+    { ui_SetAppWidth: actionCreators.ui_SetAppWidth },
     dispatch,
 )
 

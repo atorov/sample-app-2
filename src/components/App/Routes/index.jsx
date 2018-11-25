@@ -27,12 +27,15 @@ import ErrorBoundary from '../../ErrorBoundary'
 import HeaderL2 from '../../HeaderL2'
 
 import Fallback from './Fallback'
+import PrivateRoute from './PrivateRoute'
 
 // React.lazy makes Route's proptypes fail #6420
 // https://github.com/ReactTraining/react-router/issues/6420
 // component = {props => <Component {...props} />}
-const Home = lazy(() => import('../../Home'))
 const BmiCalculator = lazy(() => import('../../BmiCalculator'))
+const Home = lazy(() => import('../../Home'))
+const Login = lazy(() => import('../../Login'))
+const PrivatePage = lazy(() => import('../../PrivatePage'))
 
 class Routes extends Component {
     componentDidMount() {
@@ -69,7 +72,22 @@ class Routes extends Component {
                                     <Route exact path="/" component={props => <Home {...props} />} />
 
                                     {/* App -------------------------------------------- */}
-                                    <Route exact path="/app/bmi-calculator" component={props => <BmiCalculator {...props} />} />
+                                    <Route
+                                        exact
+                                        path="/app/bmi-calculator"
+                                        component={props => <BmiCalculator {...props} />}
+                                    />
+
+                                    <Route
+                                        exact
+                                        path="/app/login"
+                                        component={props => <Login {...props} />}
+                                    />
+                                    <PrivateRoute
+                                        exact
+                                        path="/app/private-page"
+                                        privateComponent={PrivatePage}
+                                    />
 
                                     {/* Experiments ---------------------------------------- */}
                                     <Route exact path="/home-hidden" component={HomeHidden} />
@@ -96,9 +114,13 @@ Routes.propTypes = {
     history: PropTypes.object.isRequired,
 }
 
-export default withStyles({
+const RoutedComponent = withRouter(Routes)
+
+const StyledComponent = withStyles({
     customAppRoutes: {
         marginTop: '144px',
         marginBottom: '48px',
     },
-})(withRouter(Routes))
+})(RoutedComponent)
+
+export default StyledComponent
