@@ -1,14 +1,49 @@
 /* eslint no-restricted-globals: 1 */
 /* eslint no-undef: 1 */
 
-self.onmessage = (req) => {
-    console.log('::: req.inputValue:', req.data.inputValue)
+const ctx = self
 
-    const inputValue = req.data.inputValue
-    const outputValue = inputValue ** 2
+let status = ':READY:'
 
-    setTimeout(
-        () => self.postMessage({ outputValue }),
-        1500,
-    )
+ctx.onmessage = (req) => {
+    const type = req.data.type
+    const payload = req.data.payload || {}
+    // console.log('::: worker:', type, payload)
+
+    switch (type) {
+        case ':GET_STATUS:':
+            ctx.postMessage({
+                type: ':RES_GET_STATUS:',
+                payload: status,
+            })
+            break;
+
+        case ':SET_STATUS:':
+            status = payload
+            break;
+
+        case ':CALC_BMI:':
+            if (status === ':READY:') {
+                status = ':BUSY_CALC_BMI:'
+                setTimeout(
+                    () => {
+                        const weight = payload.weight
+                        const height = payload.height
+                        const nom = weight
+                        const den = (height / 100) ** 2
+                        const value = Math.round(nom / den)
+                        ctx.postMessage({
+                            type: ':RES_CALC_BMI:',
+                            payload: value,
+                        })
+                        status = ':READY:'
+                    },
+                    1500,
+                )
+            }
+            break;
+
+        default:
+            break;
+    }
 };

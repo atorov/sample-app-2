@@ -10,12 +10,10 @@ import {
     data as bmiDefaultData,
 } from '../context-bmi'
 
-function handleClickCalcBmi(setData, calcValue) {
-    return () => setData({ value: calcValue() })
-}
-
 function handleClickResetData(setData) {
-    return () => setData(bmiDefaultData)
+    return () => {
+        setData(bmiDefaultData)
+    }
 }
 
 const Actions = () => (
@@ -32,7 +30,7 @@ const Actions = () => (
                     variant="contained"
                     color="primary"
                     disabled={!!bmi.data.value}
-                    onClick={handleClickCalcBmi(bmi.setData, bmi.calcValue)}
+                    onClick={bmi.calcValue}
                 >
                     Calculate BMI
                 </Button>

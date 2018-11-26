@@ -29,13 +29,24 @@ class BmiCalculator extends Component {
         this.workerBmi = new WorkerBmi()
         this.workerBmi.addEventListener(
             'message',
-            res => console.log('::: res.outputValue:', res.data.outputValue),
+            (res) => {
+                const type = res.data.type
+                const payload = res.data.payload || {}
+                switch (type) {
+                    case ':RES_GET_STATUS:':
+                        console.log('::: bmiWorker.res.status:', payload)
+                        break
+                    case ':RES_CALC_BMI:':
+                        console.log('::: bmiWorker.res.bmi:', payload)
+                        this.state.bmi.setData({ value: payload })
+                        break
+                    default:
+                        break
+                }
+            },
         )
-        this.workerBmi.postMessage({ inputValue: 2 })
-        this.workerBmi.postMessage({ inputValue: 3 })
-        this.workerBmi.postMessage({ inputValue: 4 })
 
-        this.state.bmi.setData({ value: this.state.bmi.calcValue() })
+        this.calcBmiValue()
     }
 
     componentWillUnmount() {
@@ -56,12 +67,12 @@ class BmiCalculator extends Component {
     }
 
     calcBmiValue() {
-        const weight = this.state.bmi.data.weight
-        const height = this.state.bmi.data.height
-        const nom = weight
-        const den = (height / 100) ** 2
-        const value = Math.round(nom / den)
-        return value
+        this.setBmiData({ value: null })
+        this.workerBmi.postMessage({
+            type: ':CALC_BMI:',
+            payload: this.state.bmi.data,
+        })
+        this.workerBmi.postMessage({ type: ':GET_STATUS:' })
     }
 
     render() {
