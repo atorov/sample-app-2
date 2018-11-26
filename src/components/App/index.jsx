@@ -9,9 +9,10 @@ import { bindActionCreators } from 'redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import * as actionCreators from '../../redux/action-creators'
+import '../../lib/tree-shaking'
 
-// import AppHeader from '../../__experiments__/components/AppHeader'
-// import AppFooter from '../../__experiments__/components/AppFooter'
+// import AppHeader from '../_AppHeader'
+// import AppFooter from '../_AppFooter'
 
 import HeaderL1 from '../HeaderL1'
 

@@ -16,13 +16,6 @@ import {
 import withStyles from '@material-ui/core/styles/withStyles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
-import HomeHidden from '../../../__experiments__/components/HomeHidden'
-import {
-    Page1 as AutoScrollToTopPage1,
-    Page2 as AutoScrollToTopPage2,
-} from '../../../__experiments__/components/AutoScrollToTopDemo'
-import SampleWorkerDemo from '../../../__experiments__/components/SampleWorkerDemo'
-
 import ErrorBoundary from '../../ErrorBoundary'
 import HeaderL2 from '../../HeaderL2'
 
@@ -71,7 +64,6 @@ class Routes extends Component {
                                 <Switch>
                                     <Route exact path="/" component={props => <Home {...props} />} />
 
-                                    {/* App -------------------------------------------- */}
                                     <Route
                                         exact
                                         path="/app/bmi-calculator"
@@ -89,13 +81,6 @@ class Routes extends Component {
                                         privateComponent={PrivatePage}
                                     />
 
-                                    {/* Experiments ---------------------------------------- */}
-                                    <Route exact path="/home-hidden" component={HomeHidden} />
-                                    <Route exact path="/auto-scroll-demo-1" component={AutoScrollToTopPage1} />
-                                    <Route exact path="/auto-scroll-demo-2" component={AutoScrollToTopPage2} />
-                                    <Route exact path="/sample-worker-demo" component={SampleWorkerDemo} />
-
-                                    {/* Misc ----------------------------------------------- */}
                                     <Redirect to="/" />
                                 </Switch>
                             </Suspense>
