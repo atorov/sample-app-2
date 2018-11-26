@@ -1,53 +1,61 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import {
     CardContent,
     Typography,
 } from '@material-ui/core'
 
-const Sliders = props => (
-    <CardContent>
-        <Typography variant="subtitle2">
-            Weight&nbsp;
-            <em>
-                {props.weight}
-            </em>
-            &nbsp;kg
-        </Typography>
-        <input
-            type="range"
-            min={40}
-            max={130}
-            value={props.weight}
-            style={{ width: '100%' }}
-            onChange={props.handleChangeWeight}
-        />
+import { Context as BmiContext } from '../context-bmi'
 
-        <Typography variant="subtitle2">
-            Height&nbsp;
-            <em>
-                {props.height}
-            </em>
-            &nbsp;cm
-        </Typography>
-        <input
-            type="range"
-            min={140}
-            max={220}
-            value={props.height}
-            style={{ width: '100%' }}
-            onChange={props.handleChangeHeight}
-        />
-    </CardContent>
-)
-
-Sliders.propTypes = {
-    height: PropTypes.number.isRequired,
-    weight: PropTypes.number.isRequired,
-
-    handleChangeHeight: PropTypes.func.isRequired,
-    handleChangeWeight: PropTypes.func.isRequired,
+function handleChangeMeasurement(key, setData) {
+    return (event) => {
+        event.preventDefault()
+        event.stopPropagation()
+        setData({
+            [key]: +event.target.value,
+            value: null,
+        })
+    }
 }
+
+const Sliders = () => (
+    <BmiContext.Consumer>
+        {bmi => (
+            <CardContent>
+                <Typography variant="subtitle2">
+                    Weight&nbsp;
+                    <em>
+                        {bmi.data.weight}
+                    </em>
+                    &nbsp;kg
+                </Typography>
+                <input
+                    type="range"
+                    min={40}
+                    max={130}
+                    value={bmi.data.weight}
+                    style={{ width: '100%' }}
+                    onChange={handleChangeMeasurement('weight', bmi.setData)}
+                />
+
+                <Typography variant="subtitle2">
+                    Height&nbsp;
+                    <em>
+                        {bmi.data.height}
+                    </em>
+                    &nbsp;cm
+                </Typography>
+                <input
+                    type="range"
+                    min={140}
+                    max={220}
+                    value={bmi.data.height}
+                    style={{ width: '100%' }}
+                    onChange={handleChangeMeasurement('height', bmi.setData)}
+                />
+            </CardContent>
+        )}
+    </BmiContext.Consumer>
+)
 
 export default Sliders

@@ -12,19 +12,13 @@ import Value from './Value'
 const Results = props => (
     <Card className={props.classes.root}>
         <Title />
-        <Value value={props.value} />
+        <Value />
         <Description />
     </Card>
 )
 
 Results.propTypes = {
     classes: PropTypes.object.isRequired,
-
-    value: PropTypes.number,
-}
-
-Results.defaultProps = {
-    value: null,
 }
 
 const StyledComponent = withStyles({

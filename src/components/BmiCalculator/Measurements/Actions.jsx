@@ -1,32 +1,44 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import {
     Button,
     CardActions,
 } from '@material-ui/core'
 
-const Actions = props => (
-    <CardActions>
-        <Button
-            color="secondary"
-            onClick={props.handleClickClearData}
-        >
-            Clear Data
-        </Button>
-        <Button
-            variant="contained"
-            color="primary"
-            onClick={props.handleClickCalculateBmi}
-        >
-            Calculate BMI
-        </Button>
-    </CardActions>
-)
+import {
+    Context as BmiContext,
+    data as bmiDefaultData,
+} from '../context-bmi'
 
-Actions.propTypes = {
-    handleClickCalculateBmi: PropTypes.func.isRequired,
-    handleClickClearData: PropTypes.func.isRequired,
+function handleClickCalcBmi(setData, calcValue) {
+    return () => setData({ value: calcValue() })
 }
+
+function handleClickResetData(setData) {
+    return () => setData(bmiDefaultData)
+}
+
+const Actions = () => (
+    <BmiContext.Consumer>
+        {bmi => (
+            <CardActions>
+                <Button
+                    color="secondary"
+                    onClick={handleClickResetData(bmi.setData)}
+                >
+                    Reset Data
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    disabled={!!bmi.data.value}
+                    onClick={handleClickCalcBmi(bmi.setData, bmi.calcValue)}
+                >
+                    Calculate BMI
+                </Button>
+            </CardActions>
+        )}
+    </BmiContext.Consumer>
+)
 
 export default Actions
