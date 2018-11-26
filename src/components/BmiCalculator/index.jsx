@@ -5,6 +5,8 @@ import { withStyles } from '@material-ui/core/styles'
 
 import Grid from '@material-ui/core/Grid'
 
+import WorkerBmi from '../../workers/bmi.worker'
+
 import Measurements from './Measurements'
 import Result from './Result'
 
@@ -24,7 +26,21 @@ class BmiCalculator extends Component {
     }
 
     componentDidMount() {
+        this.workerBmi = new WorkerBmi()
+        this.workerBmi.addEventListener(
+            'message',
+            res => console.log('::: res.outputValue:', res.data.outputValue),
+        )
+        this.workerBmi.postMessage({ inputValue: 2 })
+        this.workerBmi.postMessage({ inputValue: 3 })
+        this.workerBmi.postMessage({ inputValue: 4 })
+
         this.state.bmi.setData({ value: this.state.bmi.calcValue() })
+    }
+
+    componentWillUnmount() {
+        this.workerBmi.terminate()
+        this.workerBmi = undefined
     }
 
     setBmiData(data) {
