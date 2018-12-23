@@ -291,6 +291,12 @@ if (MODE === 'development') {
         // Enables HTML5 history API based routing
         historyApiFallback: true,
 
+        // Bypassing host checking
+        disableHostCheck: true,
+
+        // Adds headers to all responses
+        // headers: { 'Access-Control-Allow-Origin': '*' },
+
         // Open the page in browser
         // open: true,
 
