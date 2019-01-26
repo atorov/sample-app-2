@@ -36,13 +36,13 @@ function onChange(history, isAuth, auth_Set) {
 }
 
 function getTabIndex(history) {
-    switch (history.location.pathname) {
-        case '/app/bmi-calculator': return 1
-        case '/app/private-page': return 2
-        case '/app/login': return 3
-        case '/app/modern-react-xp': return 4
-        default: return 0;
-    }
+    const pathname = history.location.pathname
+    if (pathname.startsWith('/app/bmi-calculator')) return 1
+    if (pathname.startsWith('/app/private-page')) return 2
+    if (pathname.startsWith('/app/login')) return 3
+    if (pathname.startsWith('/app/modern-react-xp')) return 4
+
+    return 0
 }
 
 
