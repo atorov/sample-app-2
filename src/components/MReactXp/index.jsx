@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 import { withStyles } from '@material-ui/core/styles'
 
@@ -16,11 +16,21 @@ class MReactXp extends Component {
         return (
             <div className="container">
                 Modern React Xp
+                <br />
+
+                <button
+                    type="button"
+                    onClick={() => this.props.history.push('/app/modern-react-xp/components')}
+                >
+                    Components
+                </button>
             </div>
         )
     }
 }
 
-// MReactXp.propTypes = {}
+MReactXp.propTypes = {
+    history: PropTypes.object.isRequired,
+}
 
 export default withStyles(() => ({}))(MReactXp)
