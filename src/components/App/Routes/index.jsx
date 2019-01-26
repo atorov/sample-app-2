@@ -68,6 +68,11 @@ class Routes extends Component {
                                     <Route
                                         exact
                                         path="/app/bmi-calculator"
+                                        // The pattern
+                                        // `component={props => <Component {...props} />}`
+                                        // avoids warning thrown by react-router.
+                                        // Once the library is updated we can use just
+                                        // `component={Component}`
                                         component={props => <BmiCalculator {...props} />}
                                     />
 
@@ -86,7 +91,7 @@ class Routes extends Component {
                                     <Route
                                         exact
                                         path="/app/modern-react-xp"
-                                        component={MReactXp}
+                                        component={props => <MReactXp {...props} />}
                                     />
 
                                     <Redirect to="/" />
