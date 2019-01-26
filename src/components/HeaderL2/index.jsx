@@ -64,7 +64,7 @@ const HeaderL2 = (props) => {
                 <Tab label="BMI Calculator" />
                 <Tab label="Private Page" />
                 <Tab label={isAuth ? 'Logout' : 'Login'} />
-                {/* <Tab label="Modern React Xp" /> */}
+                <Tab label="Modern React Xp" />
             </Tabs>
         </AppBar>
     )
