@@ -34,6 +34,13 @@ const config = {
     // while importing without an extension.
     resolve: {
         extensions: ['.js', '.json', '.jsx'],
+
+        // https://github.com/gatsbyjs/gatsby/issues/11934
+        // https://github.com/gaearon/react-hot-loader/tree/7089062eac273832102c074a368d5af27e23e0b0#webpack-plugin
+        // https://github.com/gaearon/react-hot-loader/issues/1188
+        // alias: {
+        //     'react-dom': '@hot-loader/react-dom',
+        // },
     },
 
     // The base directory, an absolute path, for resolving entry points and loaders from configuration.
