@@ -29,7 +29,6 @@ function onChange(history, isAuth, auth_Set) {
             case 1: history.push('/app/bmi-calculator'); break
             case 2: history.push('/app/private-page'); break
             case 3: handleClickLogin(history, isAuth, auth_Set); break
-            case 4: history.push('/app/modern-react-xp'); break
             default: break
         }
     }
@@ -40,7 +39,6 @@ function getTabIndex(history) {
     if (pathname.startsWith('/app/bmi-calculator')) return 1
     if (pathname.startsWith('/app/private-page')) return 2
     if (pathname.startsWith('/app/login')) return 3
-    if (pathname.startsWith('/app/modern-react-xp')) return 4
 
     return 0
 }
@@ -64,7 +62,6 @@ const HeaderL2 = (props) => {
                 <Tab label="BMI Calculator" />
                 <Tab label="Private Page" />
                 <Tab label={isAuth ? 'Logout' : 'Login'} />
-                <Tab label="Modern React Xp" />
             </Tabs>
         </AppBar>
     )

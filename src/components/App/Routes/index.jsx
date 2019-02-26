@@ -28,8 +28,6 @@ import PrivateRoute from './PrivateRoute'
 const BmiCalculator = lazy(() => import('../../BmiCalculator'))
 const Home = lazy(() => import('../../Home'))
 const Login = lazy(() => import('../../Login'))
-const MReactXp = lazy(() => import('../../MReactXp'))
-const MRXComponents = lazy(() => import('../../MReactXp/Components'))
 const PrivatePage = lazy(() => import('../../PrivatePage'))
 
 class Routes extends Component {
@@ -87,17 +85,6 @@ class Routes extends Component {
                                         exact
                                         path="/app/private-page"
                                         privateComponent={PrivatePage}
-                                    />
-
-                                    <Route
-                                        exact
-                                        path="/app/modern-react-xp"
-                                        component={props => <MReactXp {...props} />}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/app/modern-react-xp/components"
-                                        component={props => <MRXComponents {...props} />}
                                     />
 
                                     <Redirect to="/" />
