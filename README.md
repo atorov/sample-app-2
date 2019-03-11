@@ -5,6 +5,7 @@ A boilerplate project
 ![alt application demo](https://github.com/atorov/sample-app-2/blob/dev/src/assets/img/demo/screen-demo.gif)
 
 ## Babel
+
 - Environments
 - plugins:
   - @babel/plugin-syntax-dynamic-import
@@ -17,7 +18,20 @@ A boilerplate project
 
 ## Dependencies TODO:
 
+- Axios
+- Babel 7
+- ESLint 5
+- Jest 23
+- jQuery 3
+- Less 3
+- Lodash 4
+- Material UI 3.9
+- React 16.8
+- Redux 4
+- Webpack 4
+
 ## ESLint
+
 - extends: airbnb
 - Custom globals
 - Custom rules
@@ -25,10 +39,12 @@ A boilerplate project
 - parser: babel-eslint
 
 ## Jest
+
 - Coverage report
 - Watch mode
 
 ## Webpack
+
 - autoprefixer
 - babel-loader
 - @babel/polyfill
